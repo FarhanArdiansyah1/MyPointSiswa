@@ -17,8 +17,9 @@ return [
             'payments' => 'c,r,u,d',
             'profile' => 'r,u'
         ],
-        'guru' => [
+        'pelapor' => [
             'users' => 'c,r,u,d',
+            'payments' => 'c,r,u,d',
             'profile' => 'r,u'
         ],
         'siswa' => [

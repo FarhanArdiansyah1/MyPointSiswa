@@ -45,12 +45,12 @@
                                 name="password_confirmation" required />
             </div>
 
-
+            <!-- Role Selection -->
             <div class="mt-4">
                 <x-label for="role_id" value="{{ __('Register as:') }}" />
                 <select name="role_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sn">
                     <option value="admin">Admin</option>
-                    <option value="guru">Guru</option>
+                    <option value="pelapor">Pelapor</option>
                     <option value="siswa">Siswa</option>
                 </select>
             </div>
