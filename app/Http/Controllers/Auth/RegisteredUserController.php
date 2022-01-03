@@ -49,7 +49,12 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        if (Auth::user()->hasRole('admin')) {
+            return redirect(RouteServiceProvider::HOME1);
+        }else if (Auth::user()->hasRole('pelapor')) {
+            return redirect(RouteServiceProvider::HOME2);
+        } else {
+            return redirect(RouteServiceProvider::HOME3);
+        }
     }
 }
