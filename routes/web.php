@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,21 @@ Route::get('/', function () {
 Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
     // Route::get('profil.kelas', [ProfilController::class, 'index'])->name('kelas');
     Route::get('dashboard', [DashboardController::class, 'index']);
+    Route::group(['prefix' => 'pelanggaran', 'as' => 'pelangaran.'], function() {
+        Route::resource('kategori', \App\Http\Controllers\KategoriPelanggaranController::class);
+        Route::resource('jenis', \App\Http\Controllers\JenisPelanggaranController::class);
+        Route::resource('record', \App\Http\Controllers\RecordPelanggaranController::class);
+        Route::resource('pelaporan', \App\Http\Controllers\PelaporanPelanggaranController::class);
+    });
+    Route::resource('pelanggaran', \App\Http\Controllers\PelanggaranController::class);
+    Route::group(['prefix' => 'penghargaan', 'as' => 'penghargaan.'], function() {
+        Route::resource('record', \App\Http\Controllers\RecordPenghargaanController::class);
+        Route::resource('pelaporan', \App\Http\Controllers\PelaporanPenghargaanController::class);
+    });
+    Route::resource('kelas', \App\Http\Controllers\KelasController::class);
+    Route::resource('siswa', \App\Http\Controllers\SiswaController::class);
+    Route::resource('pelapor', \App\Http\Controllers\PelaporController::class);
+    Route::resource('wali', \App\Http\Controllers\WaliMuridController::class);
     Route::resource('books', \App\Http\Controllers\BooksController::class);
 });
 

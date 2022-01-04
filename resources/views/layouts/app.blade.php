@@ -104,8 +104,8 @@
       </div>
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview">
+            <a href="{{ url('admin/dashboard') }}" class="nav-link {{ (request()->segment(2) == 'dashboard' ? 'active' : '') }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Dashboard
@@ -113,83 +113,82 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link {{ (request()->segment(3) == 'kategori' || request()->segment(3) == 'jenis' ? 'active' : '') }}{{ (request()->segment(2) == 'pelanggaran' && request()->segment(3) == '' ? 'active' : '') }}">
               <i class="nav-icon fas fa-bars"></i>
               <p>
-                Data Tata Tertib
+                Detail Pelanggaran
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                <a href="{{ url('admin/pelanggaran') }}" class="nav-link {{ (request()->segment(2) == 'pelanggaran' && request()->segment(3) == '' ? 'active' : '') }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pelanggaran</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('admin/pelanggaran/kategori') }}" class="nav-link {{ (request()->segment(3) == 'kategori' ? 'active' : '') }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kategori Pelanggaran</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/boxed.html" class="nav-link">
+                <a href="{{ url('admin/pelanggaran/jenis') }}" class="nav-link {{ (request()->segment(3) == 'jenis' ? 'active' : '') }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Jenis Pelanggaran</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pelanggaran</p>
-                </a>
-              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-film"></i>
+            <a href="#" class="nav-link {{ (request()->segment(2) == 'penghargaan' ? 'active' : '') }}">
+              <i class="fas fa-check-circle nav-icon"></i>
               <p>
-                Data Record
+                Penghargaan
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                  <i class="fas fa-check-circle nav-icon"></i>
-                  <p>Data Penghargaan</p>
+                <a href="{{ url('admin/penghargaan/record') }}" class="nav-link {{ (request()->segment(2) == 'penghargaan' && request()->segment(3) == 'record' ? 'active' : '') }}">
+                  <i class="nav-icon fas fa-film"></i>
+                  <p>Record</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/boxed.html" class="nav-link">
-                  <i class="fas fa-times-circle nav-icon"></i>
-                  <p>Data Pelanggaran</p>
+                <a href="{{ url('admin/penghargaan/pelaporan') }}" class="nav-link {{ (request()->segment(2) == 'penghargaan' && request()->segment(3) == 'pelaporan' ? 'active' : '') }}">
+                  <i class="nav-icon fas fa-flag"></i>
+                  <p>Pelaporan</p>
                 </a>
               </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-flag"></i>
+            <a href="#" class="nav-link {{ (request()->segment(2) == 'pelanggaran' && request()->segment(3) == 'record' ? 'active' : '') }}{{ (request()->segment(2) == 'pelanggaran' && request()->segment(3) == 'pelaporan' ? 'active' : '') }}">
+              <i class="fas fa-times-circle nav-icon"></i>
               <p>
-                Data Pelaporan
+                Pelanggaran
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                  <i class="fas fa-check-circle nav-icon"></i>
-                  <p>Data Penghargaan</p>
+                <a href="{{ url('admin/pelanggaran/record') }}" class="nav-link {{ (request()->segment(2) == 'pelanggaran' && request()->segment(3) == 'record' ? 'active' : '') }}">
+                  <i class="nav-icon fas fa-film"></i>
+                  <p>Record</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/boxed.html" class="nav-link">
-                  <i class="fas fa-times-circle nav-icon"></i>
-                  <p>Data Pelanggaran</p>
+                <a href="{{ url('admin/pelanggaran/pelaporan') }}" class="nav-link {{ (request()->segment(2) == 'pelanggaran' && request()->segment(3) == 'pelaporan' ? 'active' : '') }}">
+                  <i class="nav-icon fas fa-flag"></i>
+                  <p>Pelaporan</p>
                 </a>
               </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href="{{ route('admin.books.index') }}" class="nav-link">
-            {{-- <a href="/profil.index" class="nav-link"> --}}
+            <a href="{{ url('admin/kelas') }}" class="nav-link {{ (request()->segment(2) == 'kelas' ? 'active' : '') }}">
               <i class="nav-icon fas icon-class-user"></i>
               <p>
                 Kelas
@@ -197,7 +196,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="{{ url('admin/siswa') }}" class="nav-link {{ (request()->segment(2) == 'siswa' ? 'active' : '') }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Siswa
@@ -205,7 +204,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="{{ url('admin/pelapor') }}" class="nav-link {{ (request()->segment(2) == 'pelapor' ? 'active' : '') }}">
               <i class="nav-icon fas fa-chalkboard-teacher"></i>
               <p>
                 Pelapor
@@ -213,10 +212,18 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="{{ url('admin/wali') }}" class="nav-link {{ (request()->segment(2) == 'wali' ? 'active' : '') }}">
               <i class="nav-icon fas fa-user-tie"></i>
               <p>
                 Wali Murid
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="{{ route('admin.books.index') }}" class="nav-link {{ (request()->segment(2) == 'books' ? 'active' : '') }}">
+              <i class="nav-icon fas icon-class-user"></i>
+              <p>
+                Contoh
               </p>
             </a>
           </li>
@@ -234,7 +241,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard</h1>
+            <h1 class="m-0 text-dark">
+              @if (ucfirst(request()->segment(2) == "wali"))
+                Wali Murid
+              @else
+                {{ ucfirst(request()->segment(3)) }} {{ ucfirst(request()->segment(2)) }}
+              @endif
+            </h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
