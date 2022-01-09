@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
   <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
   <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
   <!-- Daterange picker -->
   {{-- <link rel="stylesheet" href={{ asset("plugins/daterangepicker/daterangepicker.css") }}> --}}
   <!-- summernote -->
@@ -134,7 +135,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('admin/pelanggaran/jenis') }}" class="nav-link {{ (request()->segment(3) == 'jenis' ? 'active' : '') }}">
+                <a href="{{ url('admin/jeniss') }}" class="nav-link {{ (request()->segment(3) == 'jeniss' ? 'active' : '') }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Jenis Pelanggaran</p>
                 </a>
@@ -196,7 +197,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="{{ url('admin/siswa') }}" class="nav-link {{ (request()->segment(2) == 'siswa' ? 'active' : '') }}">
+            <a href="{{ route('admin.siswa.index') }}" class="nav-link {{ (request()->segment(2) == 'siswa' ? 'active' : '') }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Siswa

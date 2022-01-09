@@ -29,11 +29,15 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
     // Route::get('profil.kelas', [ProfilController::class, 'index'])->name('kelas');
+    // resource
+    Route::get('getjenis', [JenisPelanggaransController::class, 'getJenpel'])->name('getjenis');
+    Route::resource('jeniss', \App\Http\Controllers\JenisPelanggaransController::class);
+    // end resource
     Route::get('dashboard', [DashboardController::class, 'index']);
     Route::group(['prefix' => 'pelanggaran', 'as' => 'pelangaran.'], function() {
         Route::resource('kategori', \App\Http\Controllers\KategoriPelanggaranController::class);
         Route::resource('jenis', \App\Http\Controllers\JenisPelanggaranController::class);
-        Route::resource('record', \App\Http\Controllers\RecordPelanggaranController::class);
+        Route::resource('record', s\App\Http\Controllers\RecordPelanggaranController::class);
         Route::resource('pelaporan', \App\Http\Controllers\PelaporanPelanggaranController::class);
     });
     Route::resource('pelanggaran', \App\Http\Controllers\PelanggaranController::class);
