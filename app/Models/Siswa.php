@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Siswa extends Model
 {
     use HasFactory;
+    protected $table = 'siswa';
+    protected $primarykey = 'nis';
+    protected $fillable = [
+        'nis', 'nama'
+    ];
+    public function recordpenghargaan() {
+        return $this->hasMany(RecordPenghargaan::class);
+    }
 }

@@ -32,6 +32,7 @@ Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.
     // resource
     Route::get('getjenis', [JenisPelanggaransController::class, 'getJenpel'])->name('getjenis');
     Route::resource('jeniss', \App\Http\Controllers\JenisPelanggaransController::class);
+    Route::resource('record', \App\Http\Controllers\RecordPenghargaanControllers::class);
     // end resource
     Route::get('dashboard', [DashboardController::class, 'index']);
     Route::group(['prefix' => 'pelanggaran', 'as' => 'pelangaran.'], function() {
@@ -42,7 +43,7 @@ Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.
     });
     Route::resource('pelanggaran', \App\Http\Controllers\PelanggaranController::class);
     Route::group(['prefix' => 'penghargaan', 'as' => 'penghargaan.'], function() {
-        Route::resource('record', \App\Http\Controllers\RecordPenghargaanController::class);
+        Route::resource('record', \App\Http\Controllers\RecordPenghargaanControllers::class);
         Route::resource('pelaporan', \App\Http\Controllers\PelaporanPenghargaanController::class);
     });
     Route::resource('kelas', \App\Http\Controllers\KelasController::class);
