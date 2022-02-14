@@ -13,80 +13,21 @@ class CreateRecordDataTable extends Migration
      */
     public function up()
     {
-        Schema::create('jenis', function (Blueprint $table) {
-            $table->id();
-            $table->string('data');
-            $table->timestamps();
-        });
-        // Schema::create('record_data', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->string('nis');
-        //     $table->foreign('nis')->references('nis')->on('siswa')
-        //         ->onUpdate('cascade')->onDelete('cascade');
-        //     $table->unsignedBigInteger('id_jenis');
-        //     $table->foreign('id_jenis')->references('id')->on('jenis')
-        //         ->onUpdate('cascade')->onDelete('cascade');
-        //     $table->unsignedBigInteger('poin_penghargaan');
-        //     $table->unsignedBigInteger('id_pelanggaran');
-        //     $table->foreign('id_pelanggaran')->references('id')->on('pelanggaran')
-        //         ->onUpdate('cascade')->onDelete('cascade');
-        //     $table->string('id_pelapor');
-        //     $table->foreign('id_pelapor')->references('nis_nim_nik')->on('pelapor')
-        //         ->onUpdate('cascade')->onDelete('cascade');
-        //     $table->text('keterangan');
-        //     $table->date('tanggal');
-        //     $table->timestamps();
-        // });
         Schema::create('record_data', function (Blueprint $table) {
             $table->id();
-            $table->string('nis')->nullable();
-            $table->foreign('nis')->references('nis')->on('siswa')
+            $table->unsignedBigInteger('id_siswa')->nullable();
+            $table->foreign('id_siswa')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('id_jenis')->nullable();
-            $table->foreign('id_jenis')->references('id')->on('jenis')
-                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->text('penghargaan')->nullable();
-            $table->unsignedBigInteger('poin_penghargaan')->nullable();
-            $table->text('pelanggaran')->nullable();
-            $table->unsignedBigInteger('poin_pelanggaran')->nullable();
-            $table->text('keterangan')->nullable();
-            $table->timestamps();
-        });
-        Schema::create('record_pelaporan', function (Blueprint $table) {
-            // $table->id();
-            // $table->string('nis');
-            // $table->foreign('nis')->references('nis')->on('siswa')
-            //     ->onUpdate('cascade')->onDelete('cascade');
-            // $table->unsignedBigInteger('id_jenis');
-            // $table->foreign('id_jenis')->references('id')->on('jenis')
-            //     ->onUpdate('cascade')->onDelete('cascade');
-            // $table->unsignedBigInteger('poin_penghargaan');
-            // $table->unsignedBigInteger('id_pelanggaran');
-            // $table->foreign('id_pelanggaran')->references('id')->on('pelanggaran')
-            //     ->onUpdate('cascade')->onDelete('cascade');
-            // $table->string('id_pelapor');
-            // $table->foreign('id_pelapor')->references('nis_nim_nik')->on('pelapor')
-            //     ->onUpdate('cascade')->onDelete('cascade');
-            // $table->text('keterangan');
-            // $table->date('tanggal');
-            // $table->timestamps();
-            $table->id();
-            $table->string('nis');
-            $table->foreign('nis')->references('nis')->on('siswa')
+            $table->UnsignedBigInteger('id_pelanggaran')->nullable();
+            $table->foreign('id_pelanggaran')->references('id')->on('pelanggaran')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('id_jenis');
-             $table->foreign('id_jenis')->references('id')->on('jenis')
-                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('poin_penghargaan')->nullable();
-            $table->text('penghargaan')->nullable();
-            $table->unsignedBigInteger('poin_pelanggaran')->nullable();
-            $table->text('pelanggaran')->nullable();
+            $table->BigInteger('poin')->nullable();
+            $table->unsignedBigInteger('id_pelapor')->nullable();
+            $table->foreign('id_pelapor')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->text('keterangan')->nullable();
-            // $table->date('tanggal')->nullable();
-            $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -94,8 +35,6 @@ class CreateRecordDataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jenis');
-        Schema::dropIfExists('record');
-        Schema::dropIfExists('record_pelaporan');
+        Schema::dropIfExists('record_data');
     }
 }
