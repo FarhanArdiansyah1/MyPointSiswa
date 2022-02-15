@@ -102,6 +102,7 @@
         <div class="info">
           <a href="#" class="d-block">{{ Auth::user()->name }}</a>
           <a href="#" class="d-block">{{ Auth::user()->jabatan }}</a>
+          <a href="#" class="d-block">{{ Auth::user()->kelas }}</a>
         </div>
       </div>
       <nav class="mt-2">
