@@ -19,7 +19,25 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home', [
+        'title' => "Home",
+        'jumbojudul' => "My Points",
+        'jumboisi' => "My Points adalah website yang terkait dengan point siswa, "
+    ]);
+});
+Route::get('/tentang', function () {
+    return view('tentang', [
+        'title' => "Tentang",
+        'jumbojudul' => "Tentang Kami",
+        'jumboisi' => ""
+    ]);
+});
+Route::get('/kontak', function () {
+    return view('kontak', [
+        'title' => "Kontak",
+        'jumbojudul' => "Kontak Kami",
+        'jumboisi' => ""
+    ]);
 });
 
 // Route::get('/dashboard', function () {

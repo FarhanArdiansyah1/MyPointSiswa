@@ -1,0 +1,323 @@
+html, body {
+    height: 100%;
+}
+
+:root {
+    --tinggi : 500px;
+    --sedang : 300px;
+}
+
+/* cover jumbotron and navbar */
+.cover-home {
+    background-image: url(aset/x1/cover-jumbo.png);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    z-index: -1;
+    filter: brightness(40%);
+}
+
+.cover-rest {
+    background-image: url(aset/x1/cover-jumbo.png);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    top: 0px;
+    z-index: -1;
+    filter: brightness(30%);
+}
+
+/* space */
+#home, #tentang, #berita, #galeri, #kontak {
+    min-height: 100%;
+}
+
+/* footer */
+#footer-links ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+#footer-links ul li a:hover {
+    color: #6c757d;
+    text-decoration: underline;
+}
+
+#footer-links ul li {
+    list-style: none;
+}
+
+#footer-links ul {
+    padding-left: 0px;
+}
+
+#footer-links ul li img {
+    padding-right: 10px;
+}
+
+/* partials jumbotron css */
+#jumbotron-1 {
+    height: 441px;
+}
+
+#jumbotron-2 {
+    height: 241px;
+}
+
+#jumbotron-1 h1, #jumbotron-2 {
+    padding-top: 80px;
+}
+
+#jumbotron-1 p {
+    width: 50%;
+}
+
+
+/* isi content home bagain tentang */
+#bagain-tentang-home .row .col-6.gambar {
+    position: relative;
+}
+
+#bagian-tentang-home .row .col-6.gambar img {
+    object-fit: contain;
+    width: auto;
+    max-width: 100%;
+    padding: 5px;
+}
+
+
+/* pawprint bagian home */
+#bagian-pawprint-home {
+    position: relative;
+    margin-top: 100px;
+}
+
+.background-cover {
+    background-image: url(aset/x1/cover.png);
+    background-size: cover;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 600px;
+    filter: brightness(65%);
+}
+
+.pawprint {
+    width: 25%;
+    height: auto;
+    background-color: white;
+    margin: 7px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.pawprint h5 {
+    margin-top: 10px;
+}
+
+.pawprint p {
+    color: #6c757d ;
+}
+
+#paw {
+    background-color: #008f0c;
+    padding: 20px;
+    width: 100px;
+    height: 100px;
+    display: block;
+    border-radius: 100%;
+    margin: 30px auto;
+}
+
+/* bagian-berita-home */
+#bagian-berita-home {
+    position: relative;
+    margin-top: 100px;
+}
+
+#bagian-berita-home .container.berita-isi .row {
+    margin-top: 30px;
+}
+
+#bagian-berita-home .container.berita-isi .row .col-4 .card {
+    height: 100%;
+}
+
+/* bagian-galeri-home */
+#bagian-galeri-home{
+    position: relative;
+    margin-top: 100px;
+}
+
+#bagian-galeri-home .galeri-gambar .wadah {
+    width: 25%;
+    height: 100%;
+    position: relative;
+    
+}
+
+#bagian-galeri-home .galeri-gambar .wadah img {
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.panah-kanan {
+    bottom: 100px;
+    right: 20px;
+    opacity: 0.5;
+    position: absolute;
+    object-position: center;
+}
+.panah-kiri {
+    bottom: 100px;
+    left: 20px;
+    opacity: 0.5;
+    position: absolute;
+    object-position: center;
+    transform: rotate(180deg);
+}
+
+
+/* Tab Tentang */
+
+/* bagian-content-tentang */
+#tentang {
+    margin: 100px auto;
+}
+
+#bagian-visimisi-tentang {
+    margin-top: 50px;
+}
+
+.col-6 p {
+    width: 75%;
+}
+
+.col-6 img {
+    padding: 5px;
+}
+
+
+/* Tab Berita */
+
+/* bagian-content-berita */
+#bagian-content-berita {
+    margin-top: 100px;
+}
+
+.bagian-kiri, .bagian-kanan {
+    width: 50%;
+}
+.bagian-kiri img, .bagian-kanan .vgambar {
+    width: 100%;
+}
+
+.bagian-kanan .vgambar {
+    height: 50%;
+}
+
+#bagian-thumbnail-berita {
+    margin-bottom: 100px;
+}
+
+#bagian-thumbnail-berita h2 {
+    margin: 50px auto;
+}
+
+
+/* Tabs Galeri */
+
+/* bagian-slider-galeri */
+#bagian-slider-galeri {
+    margin-top: 100px ;
+    height: 500px;
+    position: relative;
+}
+
+.slides {
+    display: none;
+    height: 100%;
+}
+
+#slides-kiri {
+    top: 250px;
+    left: 30px;
+    opacity: 0.5;
+    position: absolute;
+}
+#slides-kanan {
+    top: 250px;
+    right: 30px;
+    opacity: 0.5;
+    position: absolute;
+}
+
+/* bagian-grid-galeri */
+#bagian-grid-galeri {
+    margin: 50px auto;
+}
+
+#bagian-grid-galeri img {
+    margin: 15px auto;
+}
+
+/* Kontak */
+/* map */
+#bagian-map-kontak {
+    margin-top: 100px;
+}
+
+/* form */
+#bagian-form-kontak h2 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#deskripsi{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(248, 248, 248);
+    color: #8c8c8c;
+    border: 2px solid rgb(232, 232, 232);
+    resize: none;
+}
+
+.kontak-input{
+    width: 100%;
+    background-color: rgb(248, 248, 248);
+    color:  #8c8c8c;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 2px solid rgb(232, 232, 232);
+}
+
+/* links */
+
+#icon {
+    margin: 100px auto;
+}
+
+#icon span {
+    background-color: #008f0c;
+    padding: 25px;
+    width: 70px;
+    height: 70px;
+    display: block;
+    border-radius: 100%;
+    margin: 0px auto;
+    object-fit: contain;
+    display: flex;
+    justify-content: center;
+}
+
+.links {
+    text-decoration: none;
+    color: black;
+}
