@@ -92,21 +92,16 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">My Point Siswa</span>
-    </a>
-
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="user-panel mt-2 pb-2 mb-3 d-flex">
         <div class="image">
           <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="#" class="d-block">{{ Auth::user()->jabatan }}</a>
         </div>
       </div>
       <nav class="mt-2">
@@ -120,35 +115,6 @@
             </a>
           </li>
           @role('pelapor')
-          <!-- <li class="nav-item has-treeview">
-            <a href="#" class="nav-link {{ (request()->segment(3) == 'kategori' || request()->segment(3) == 'jenis' ? 'active' : '') }}{{ (request()->segment(2) == 'pelanggaran' && request()->segment(3) == '' ? 'active' : '') }}">
-              <i class="nav-icon fas fa-bars"></i>
-              <p>
-                Detail Pelanggaran
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('admin/pelanggaran') }}" class="nav-link {{ (request()->segment(2) == 'pelanggaran' && request()->segment(3) == '' ? 'active' : '') }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pelanggaran</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('admin/pelanggaran/kategori') }}" class="nav-link {{ (request()->segment(3) == 'kategori' ? 'active' : '') }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kategori Pelanggaran</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('admin/jeniss') }}" class="nav-link {{ (request()->segment(3) == 'jeniss' ? 'active' : '') }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Jenis Pelanggaran</p>
-                </a>
-              </li>
-            </ul>
-          </li> -->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link {{ (request()->segment(2) == 'penghargaan' ? 'active' : '') }}">
               <i class="fas fa-check-circle nav-icon"></i>
@@ -237,80 +203,21 @@
           </li>
           @endrole
           @role('admin')
-          <!-- <li class="nav-item has-treeview">
-            <a href="#" class="nav-link {{ (request()->segment(3) == 'kategori' || request()->segment(3) == 'jenis' ? 'active' : '') }}{{ (request()->segment(2) == 'pelanggaran' && request()->segment(3) == '' ? 'active' : '') }}">
-              <i class="nav-icon fas fa-bars"></i>
-              <p>
-                Detail Pelanggaran
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('admin/pelanggaran') }}" class="nav-link {{ (request()->segment(2) == 'pelanggaran' && request()->segment(3) == '' ? 'active' : '') }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pelanggaran</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('admin/pelanggaran/kategori') }}" class="nav-link {{ (request()->segment(3) == 'kategori' ? 'active' : '') }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Kategori Pelanggaran</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('admin/jeniss') }}" class="nav-link {{ (request()->segment(3) == 'jeniss' ? 'active' : '') }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Jenis Pelanggaran</p>
-                </a>
-              </li>
-            </ul>
-          </li> -->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link {{ (request()->segment(2) == 'penghargaan' ? 'active' : '') }}">
               <i class="fas fa-check-circle nav-icon"></i>
               <p>
                 Penghargaan
-                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('admin.penghargaan.record.index') }}" class="nav-link {{ (request()->segment(2) == 'penghargaan' && request()->segment(3) == 'record' ? 'active' : '') }}">
-                  <i class="nav-icon fas fa-film"></i>
-                  <p>Record</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('admin/penghargaan/pelaporan') }}" class="nav-link {{ (request()->segment(2) == 'penghargaan' && request()->segment(3) == 'pelaporan' ? 'active' : '') }}">
-                  <i class="nav-icon fas fa-flag"></i>
-                  <p>Pelaporan</p>
-                </a>
-              </li>
-            </ul>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item">
             <a href="#" class="nav-link {{ (request()->segment(2) == 'pelanggaran' && request()->segment(3) == 'record' ? 'active' : '') }}{{ (request()->segment(2) == 'pelanggaran' && request()->segment(3) == 'pelaporan' ? 'active' : '') }}">
               <i class="fas fa-times-circle nav-icon"></i>
               <p>
                 Pelanggaran
-                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('admin/pelanggaran/record') }}" class="nav-link {{ (request()->segment(2) == 'pelanggaran' && request()->segment(3) == 'record' ? 'active' : '') }}">
-                  <i class="nav-icon fas fa-film"></i>
-                  <p>Record</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('admin/pelanggaran/pelaporan') }}" class="nav-link {{ (request()->segment(2) == 'pelanggaran' && request()->segment(3) == 'pelaporan' ? 'active' : '') }}">
-                  <i class="nav-icon fas fa-flag"></i>
-                  <p>Pelaporan</p>
-                </a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item has-treeview">
             <a href="{{ url('admin/kelas') }}" class="nav-link {{ (request()->segment(2) == 'kelas' ? 'active' : '') }}">
@@ -333,14 +240,6 @@
               <i class="nav-icon fas fa-chalkboard-teacher"></i>
               <p>
                 Pelapor
-              </p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="{{ url('admin/wali') }}" class="nav-link {{ (request()->segment(2) == 'wali' ? 'active' : '') }}">
-              <i class="nav-icon fas fa-user-tie"></i>
-              <p>
-                Wali Murid
               </p>
             </a>
           </li>
@@ -402,18 +301,8 @@
         </div>
       </div>
     </section>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2022 NeoDev</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 1.0
-    </div>
-  </footer>
 
-  <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
   </aside>
