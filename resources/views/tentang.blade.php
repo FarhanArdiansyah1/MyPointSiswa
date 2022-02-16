@@ -58,7 +58,7 @@
             </div>
             {{-- 3 --}}
             <div class="pawprint">
-                <img src="aset/pawprint.svg" id="paw" alt="paw">
+                <img src="aset/Farshal.jpeg" id="paw" alt="paw">
                 <h5 class="fw-bold">Farshal Rauzani Yuzka</h5>
                 <p>Full-Stack Developer
                 </p>
