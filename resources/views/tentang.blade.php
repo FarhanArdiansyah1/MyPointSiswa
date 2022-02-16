@@ -47,7 +47,7 @@
             <div class="pawprint">
                 <img src="aset/pawprint.svg" id="paw" alt="paw">
                 <h5 class="fw-bold">Agung Kurniawan</h5>
-                <p>Full-Stack Developer</p>
+                <p>CFO & Front-End Developer</p>
             </div>
             {{-- 2 --}}
             <div class="pawprint">
@@ -60,21 +60,21 @@
             <div class="pawprint">
                 <img src="aset/Farshal.jpeg" id="paw" alt="paw">
                 <h5 class="fw-bold">Farshal Rauzani Yuzka</h5>
-                <p>Full-Stack Developer
+                <p>Back-End Developer
                 </p>
             </div>
             {{-- 4 --}}
             <div class="pawprint">
                 <img src="aset/pawprint.svg" id="paw" alt="paw">
                 <h5 class="fw-bold">Hilman Arasyid</h5>
-                <p>Full-Stack Developer
+                <p>CEO & System Analyst
                 </p>
             </div>
             {{-- 5 --}}
             <div class="pawprint">
                 <img src="aset/pawprint.svg" id="paw" alt="paw">
                 <h5 class="fw-bold">Intan Puja Zaeni</h5>
-                <p>Full-Stack Developer
+                <p>UI/UX Design & Front-End Developer
                 </p>
             </div>
         </div>
