@@ -65,7 +65,7 @@
             </div>
             {{-- 4 --}}
             <div class="pawprint">
-                <img src="aset/pawprint.svg" id="paw" alt="paw">
+                <img src="Hilman.jpeg" id="paw" alt="paw">
                 <h5 class="fw-bold">Hilman Arasyid</h5>
                 <p>CEO & System Analyst
                 </p>
