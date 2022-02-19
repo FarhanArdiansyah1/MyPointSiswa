@@ -32,55 +32,5 @@
             </div>
         </div>
     </div>
-    {{-- 4 kartu --}}
-    <div id="bagian-pawprint-home">
-        <div class="background-cover"></div>
-
-        <div class="pawprint-judul container" style="padding-top: 10px; padding-bottom: 0px;">
-            <h1 class="fw-bold display-4 text-capitalize text-light">
-                Keanggotaan
-            </h1>
-        </div>
-
-        <div class="pawprint-isi container d-flex" style="padding-top: 0px; padding-bottom: 0px;">
-            {{-- 1 --}}
-            <div class="pawprint">
-                <img src="aset/Agung.jpeg" id="paw" alt="paw">
-                <h5 class="fw-bold">Agung Kurniawan</h5>
-                <p>CFO & Front-End Developer</p>
-            </div>
-            {{-- 2 --}}
-            <div class="pawprint">
-                <img src="aset/Farhan.png" id="paw" alt="paw">
-                <h5 class="fw-bold">Farhan Ardiansyah</h5>
-                <p>Full-Stack Developer
-                </p>
-            </div>
-            {{-- 3 --}}
-            <div class="pawprint">
-                <img src="aset/Farshal.jpeg" id="paw" alt="paw">
-                <h5 class="fw-bold">Farshal Rauzani Yuzka</h5>
-                <p>Back-End Developer
-                </p>
-            </div>
-            {{-- 4 --}}
-            <div class="pawprint">
-<<<<<<< HEAD:resources/views/navdir/home/tentang.blade.php
-                <img src="Hilman.jpeg" id="paw" alt="paw">
-=======
-                <img src="aset/Hilman.png" id="paw" alt="paw">
->>>>>>> d5bd1e6e7aca3cbdd8e5830f83e3638d8f826dc6:resources/views/tentang.blade.php
-                <h5 class="fw-bold">Hilman Arasyid</h5>
-                <p>CEO & System Analyst
-                </p>
-            </div>
-            {{-- 5 --}}
-            <div class="pawprint">
-                <img src="aset/Intan.jpg" id="paw" alt="paw">
-                <h5 class="fw-bold">Intan Puja Zaeni</h5>
-                <p>UI/UX Design & Front-End Developer
-                </p>
-            </div>
-        </div>
-    </div>
+    <br>
 @endsection
