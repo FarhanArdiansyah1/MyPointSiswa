@@ -20,7 +20,7 @@ class VerifyEmailController extends Controller
         if ($request->user()->hasVerifiedEmail()) {
             if (Auth::user()->hasRole('admin')) {
                 return redirect()->intended(RouteServiceProvider::HOME1.'?verified=1');
-            }else if (Auth::user()->hasRole('pelapor')) {
+            } else if (Auth::user()->hasRole('pelapor')) {
                 return redirect()->intended(RouteServiceProvider::HOME2.'?verified=1');
             } else {
                 return redirect()->intended(RouteServiceProvider::HOME3.'?verified=1');
@@ -33,7 +33,7 @@ class VerifyEmailController extends Controller
 
         if (Auth::user()->hasRole('admin')) {
             return redirect()->intended(RouteServiceProvider::HOME1.'?verified=1');
-        }else if (Auth::user()->hasRole('pelapor')) {
+        } else if (Auth::user()->hasRole('pelapor')) {
             return redirect()->intended(RouteServiceProvider::HOME2.'?verified=1');
         } else {
             return redirect()->intended(RouteServiceProvider::HOME3.'?verified=1');

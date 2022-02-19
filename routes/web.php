@@ -26,61 +26,40 @@ Route::get('/', function () {
     ]);
 });
 Route::get('/tentang', function () {
-    return view('tentang', [
+    return view('navdir.home.tentang', [
         'title' => "Tentang",
         'jumbojudul' => "Tentang Kami",
         'jumboisi' => ""
     ]);
 });
 Route::get('/kontak', function () {
-    return view('kontak', [
+    return view('navdir.home.kontak', [
         'title' => "Kontak",
         'jumbojudul' => "Kontak Kami",
         'jumboisi' => ""
     ]);
 });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
-// Route::get('dashboard', [DashboardController::class, 'index']);
+Route::view('dashboard', 'dashboard');
 
 Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
-    // Route::get('profil.kelas', [ProfilController::class, 'index'])->name('kelas');
-    // resource
-    Route::get('getjenis', [JenisPelanggaransController::class, 'getJenpel'])->name('getjenis');
-    Route::resource('jeniss', \App\Http\Controllers\JenisPelanggaransController::class);
-    Route::resource('record', \App\Http\Controllers\RecordPenghargaanControllers::class);
-    // end resource
-    Route::get('dashboard', [DashboardController::class, 'index']);
-    Route::group(['prefix' => 'pelanggaran', 'as' => 'pelangaran.'], function() {
-        Route::resource('kategori', \App\Http\Controllers\KategoriPelanggaranController::class);
-        Route::resource('jenis', \App\Http\Controllers\JenisPelanggaranController::class);
-        Route::resource('record', s\App\Http\Controllers\RecordPelanggaranController::class);
-        Route::resource('pelaporan', \App\Http\Controllers\PelaporanPelanggaranController::class);
-    });
-    Route::resource('pelanggaran', \App\Http\Controllers\PelanggaranController::class);
-    Route::group(['prefix' => 'penghargaan', 'as' => 'penghargaan.'], function() {
-        Route::resource('record', \App\Http\Controllers\RecordPenghargaanControllers::class);
-        Route::resource('pelaporan', \App\Http\Controllers\PelaporanPenghargaanController::class);
-    });
-    Route::resource('kelas', \App\Http\Controllers\KelasController::class);
-    Route::resource('siswa', \App\Http\Controllers\SiswaController::class);
-    Route::resource('pelapor', \App\Http\Controllers\PelaporController::class);
-    Route::resource('wali', \App\Http\Controllers\WaliMuridController::class);
-    Route::resource('books', \App\Http\Controllers\BooksController::class);
+    Route::view('dashboard', 'dashboard');
+    Route::view('contacts', 'navdir.dashboard.contacts');
+    Route::view('kelas', 'navdir.dashboard.kelas');
+    Route::view('siswa', 'navdir.dashboard.kelas');
+    Route::view('penghargaan', 'navdir.dashboard.penghargaan');
+    Route::view('pelanggaran', 'navdir.dashboard.pelanggaran');
 });
 
 Route::group(['middleware' => 'role:pelapor', 'prefix' => 'pelapor', 'as' => 'pelapor.'], function() {
-    // Route::get('profil.kelas', [ProfilController::class, 'index'])->name('kelas');
-    Route::get('dashboard', [DashboardController::class, 'index']);
-    Route::resource('books', \App\Http\Controllers\BooksController::class);
+    Route::view('dashboard', 'dashboard');
+    Route::view('kelas', 'navdir.dashboard.kelas');
+    Route::view('siswa', 'navdir.dashboard.siswa');
 });
 
 Route::group(['middleware' => 'role:siswa', 'prefix' => 'siswa', 'as' => 'siswa.'], function() {
-    // Route::get('profil.kelas', [ProfilController::class, 'index'])->name('kelas');
-    Route::get('dashboard', [DashboardController::class, 'index']);
-    Route::resource('books', \App\Http\Controllers\BooksController::class);
+    Route::view('dashboard', 'dashboard');
+    Route::view('kelas', 'kelas');
+    Route::view('siswa', 'siswa');
 });
 
 require __DIR__.'/auth.php';

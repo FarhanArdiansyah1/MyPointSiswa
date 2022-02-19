@@ -51,7 +51,7 @@ class RegisteredUserController extends Controller
         Auth::login($user);
         if (Auth::user()->hasRole('admin')) {
             return redirect(RouteServiceProvider::HOME1);
-        }else if (Auth::user()->hasRole('pelapor')) {
+        } else if (Auth::user()->hasRole('pelapor')) {
             return redirect(RouteServiceProvider::HOME2);
         } else {
             return redirect(RouteServiceProvider::HOME3);

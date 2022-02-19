@@ -18,10 +18,11 @@ class CreateRecordDataTable extends Migration
             $table->unsignedBigInteger('id_siswa')->nullable();
             $table->foreign('id_siswa')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
+            $table->BigInteger('poin')->nullable();
+            $table->string('prestasi')->nullable();
             $table->UnsignedBigInteger('id_pelanggaran')->nullable();
             $table->foreign('id_pelanggaran')->references('id')->on('pelanggaran')
-                ->onUpdate('cascade')->onDelete('cascade');
-            $table->BigInteger('poin')->nullable();
+                ->onUpdate('cascade')->onDelete('cascade')->nullable();
             $table->unsignedBigInteger('id_pelapor')->nullable();
             $table->foreign('id_pelapor')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
