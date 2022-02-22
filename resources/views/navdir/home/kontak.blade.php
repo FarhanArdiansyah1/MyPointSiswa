@@ -30,7 +30,7 @@
                             <a class="links" href="#">
                                 <span><img src="aset/mail.svg" id="iconlink"></span>
                                 <h5 class="fw-bold">Email</h5>
-                                <div class="text-secondary">neodev@gmail.com</div>
+                                <div class="text-secondary">tropisianimal@gmail.com</div>
                             </a>
                         </div>
 

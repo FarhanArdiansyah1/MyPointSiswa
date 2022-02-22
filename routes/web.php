@@ -39,13 +39,14 @@ Route::get('/kontak', function () {
         'jumboisi' => ""
     ]);
 });
+Route::view('student', 'backend.students');
 Route::view('dashboard', 'dashboard');
 
 Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::view('dashboard', 'dashboard');
     Route::view('contacts', 'navdir.dashboard.contacts');
     Route::view('kelas', 'navdir.dashboard.kelas');
-    Route::view('siswa', 'navdir.dashboard.kelas');
+    Route::view('siswa', 'navdir.dashboard.siswa');
     Route::view('penghargaan', 'navdir.dashboard.penghargaan');
     Route::view('pelanggaran', 'navdir.dashboard.pelanggaran');
 });

@@ -47,4 +47,14 @@ class User extends Authenticatable
     public function getuser(){
         return $this->hasMany(Record::class);
     }
+
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function ($query) use ($term) {
+            $query->where('name', 'like', $term)
+                ->orWhere('kelas', 'like', $term)
+                ->orWhere('nis_nim_nik', 'like', $term);
+        });
+    }
 }

@@ -22,11 +22,6 @@ class CreateContactsTable extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
-        Schema::create('keresmian', function (Blueprint $table) {
-            $table->id();
-            $table->string('keresmian', 15);
-            $table->timestamps();
-        });
     }
 
     /**
@@ -37,6 +32,5 @@ class CreateContactsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('contacts');
-        Schema::dropIfExists('keresmian');
     }
 }

@@ -80,6 +80,7 @@
                 </tr>
             @endforeach
         </table>
+        <livewire:penghargaan/>
     </div>
 
 </div>

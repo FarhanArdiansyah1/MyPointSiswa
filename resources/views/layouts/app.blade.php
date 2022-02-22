@@ -45,6 +45,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 @livewireStyles
+@powerGridStyles
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -307,6 +308,10 @@
     <script src={{ asset('dist/js/demo.js') }}></script>
     @stack('js')
     @livewireScripts
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    @powerGridScripts
 </body>
 
 </html>

@@ -40,6 +40,14 @@
                                     <input type="text" class="form-control" placeholder="Enter email"
                                         wire:model.defer="email">
                                 </div>
+                                <div class="form-group">
+                                    <select name="form-control" id="" wire:model="keresmianval">
+                                        <option value="{{ $keresmiann }}">{{ $keresmiannama }}</option>
+                                        @foreach ($keresmian as $item)
+                                            <option value="{{ $item->id }}">{{ $item->keresmian }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button wire:click.defer="update()" class="btn btn-primary" data-dismiss="modal">Send
                                     message</button>
@@ -49,7 +57,7 @@
                 </div>
             </div>
         @else
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+            {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore.self>
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -79,8 +87,48 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Keresmian</label>
+                                    <input type="text" class="form-control" placeholder="Enter email"
+                                        wire:model="keresmianval">
+                                </div>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button wire:click="store()" class="btn btn-primary" data-dismiss="modal">Send
+                                    message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore.self>
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Masukan Nama Siswa</label>
+                                    <input type="text" wire:model="namasiswa" class="form-control"
+                                        placeholder="Enter Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Masukan Nama prestasi</label>
+                                    <input type="text" class="form-control" placeholder="Enter email"
+                                        wire:model="prestasi">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Masukan Poin</label>
+                                    <input type="text" class="form-control" placeholder="Enter email"
+                                        wire:model="poin">
+                                </div>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button wire:click="stores()" class="btn btn-primary" data-dismiss="modal">Send
                                     message</button>
                             </form>
                         </div>
