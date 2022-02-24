@@ -20,7 +20,29 @@ class Penghargaan extends Component
     public $selectedSiswa = null;
     public $selectedPelapor = null;
     public $selectAll = false;
+    protected $paginationTheme = 'bootstrap';
 
+    public function showCreate()
+    {
+        $this->dispatchBrowserEvent('show-create');
+    }
+
+    public function closeCreate()
+    {
+        $this->resetInput();
+        $this->dispatchBrowserEvent('close-create');
+    }
+
+    public function showUpdate()
+    {
+        $this->dispatchBrowserEvent('show-update');
+    }
+
+    public function closeUpdate()
+    {
+        $this->resetInput();
+        $this->dispatchBrowserEvent('close-update');
+    }
 
     public function render()
     {
@@ -97,26 +119,53 @@ class Penghargaan extends Component
 
     public function stores()
     {
-        $this->validate([
-            'prestasi' => 'required',
-            'id_siswa' => 'required',
-            'poin' => 'poin'
-        ]);
-        $this->idsiswa = User::where('name', $this->namasiswa)->value('id');
-        $this->idpelapor = Auth::user()->id;
-        Record::create([
-            'prestasi' => $this->prestasi,
+        $this->idsiswa = User::where('name', $this->namasiswa)->where('jabatan', 'siswa')->value('id');
+        if (empty($this->idsiswa)) {
+        } else {
+            $this->validate([
+                'prestasi' => 'required',
+                'poin' => 'required'
+            ]);
+            $this->idpelapor = Auth::user()->id;
+            Record::create([
+                'prestasi' => $this->prestasi,
+                'poin' => $this->poin,
+                'id_pelapor' => $this->idpelapor,
+                'id_siswa' => $this->idsiswa
+            ]);
+            $this->resetInput();
+            $this->dispatchBrowserEvent('close-create');
+        }
+    }
+
+    public function edit($id)
+    {
+        $record = Record::findOrFail($id);
+        $this->selected_id = $id;
+        $this->poin = $record->poin;
+        $this->prestasi = $record->prestasi;
+        $this->namasiswa = User::where('id', $record->id_siswa)->value('name');
+        $this->dispatchBrowserEvent('show-update');
+    }
+
+    public function update()
+    {
+        $record = Record::find($this->selected_id);
+
+        $record->update([
             'poin' => $this->poin,
-            'id_pelapor'=> $this->idpelapor,
-            'id_siswa' => $this->idsiswa
+            'prestasi' => $this->prestasi,
         ]);
         $this->resetInput();
+        $this->updateMode = false;
+        $this->dispatchBrowserEvent('close-update');
     }
+
     private function resetInput()
     {
+        $this->selected_id = null;
         $this->namasiswa = null;
         $this->prestasi = null;
         $this->poin = null;
     }
-
 }

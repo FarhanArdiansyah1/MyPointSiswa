@@ -15,6 +15,7 @@ class Siswa extends Component
     public $checked = [];
     public $selectPage = false;
     public $selectAll = false;
+    protected $paginationTheme = 'bootstrap';
 
 
     public function render()

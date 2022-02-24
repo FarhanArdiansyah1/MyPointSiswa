@@ -41,10 +41,12 @@ class Contact extends Component
     }
     public function stores()
     {
-        $this->validate([
-            'prestasi' => 'required|min:5',
-        ]);
         $this->idsiswa = User::where('name', $this->namasiswa)->value('id');
+        $this->validate([
+            'prestasi' => 'required',
+            'idsiswa' => 'required',
+            'poin' => 'required',
+        ]);
         $this->idpelapor = Auth::user()->id;
         Record::create([
             'prestasi' => $this->prestasi,
@@ -103,7 +105,8 @@ class Contact extends Component
             $record = Contactos::find($this->selected_id);
             $record->update([
                 'name' => $this->name,
-                'email' => $this->email
+                'email' => $this->email,
+                'keresmian_id'=> $this->keresmianval
             ]);
             $this->resetInput();
             $this->updateMode = false;

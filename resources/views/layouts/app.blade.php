@@ -2,7 +2,6 @@
 <html>
 
 <head>
-    @stack('head')
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>
@@ -45,7 +44,6 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 @livewireStyles
-@powerGridStyles
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -67,7 +65,7 @@
             </ul>
 
             <!-- SEARCH FORM -->
-            <form class="form-inline ml-3">
+            {{-- <form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
                     <input class="form-control form-control-navbar" type="search" placeholder="Cari Siswa"
                         aria-label="Search">
@@ -77,7 +75,7 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            </form> --}}
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
@@ -226,21 +224,17 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <div class="content-header">
                 <div class="container-fluid">
-                    <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1 class="m-0 text-dark">
                                 @if (empty(ucfirst(request()->segment(2))) && empty(ucfirst(request()->segment(3))))
-                                    {{ ucfirst(request()->segment(1)) }}
+                                    {{ ucfirst(request()->segment(1)) }}s
                                 @elseif (empty(ucfirst(request()->segment(3))))
                                     {{ ucfirst(request()->segment(2)) }}
                                 @endif
                             </h1>
                         </div><!-- /.col -->
-                    </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
-            </div>
             <!-- /.content-header -->
 
             <!-- Main content -->
@@ -306,12 +300,24 @@
     <script src={{ asset('dist/js/pages/dashboard.js') }}></script>
     <!-- AdminLTE for demo purposes -->
     <script src={{ asset('dist/js/demo.js') }}></script>
-    @stack('js')
     @livewireScripts
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    @powerGridScripts
-</body>
+    <script>
+        window.addEventListener('show-create', event => {
+            $('#exampleModal').modal('show');
+        })
+        window.addEventListener('close-create', event => {
+            $('#exampleModal').modal('hide');
+        })
 
+        window.addEventListener('show-update', event => {
+            $('#exampleModals').modal('show');
+            
+        })
+        window.addEventListener('close-update', event => {
+            $('#exampleModals').modal('hide');
+        })
+    </script>
+</body>
 </html>

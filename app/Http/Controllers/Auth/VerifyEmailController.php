@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Auth;
 
 class VerifyEmailController extends Controller
 {
@@ -18,7 +19,7 @@ class VerifyEmailController extends Controller
     public function __invoke(EmailVerificationRequest $request)
     {
         if ($request->user()->hasVerifiedEmail()) {
-            if (Auth::user()->hasRole('admin')) {
+            if (Auth::user()->hasaRole('admin')) {
                 return redirect()->intended(RouteServiceProvider::HOME1.'?verified=1');
             } else if (Auth::user()->hasRole('pelapor')) {
                 return redirect()->intended(RouteServiceProvider::HOME2.'?verified=1');

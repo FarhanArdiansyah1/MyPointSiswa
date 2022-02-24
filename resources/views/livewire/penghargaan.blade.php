@@ -5,7 +5,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Buat Record Penghargaan</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" wire:click.prevent='closeCreate'>
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -13,18 +13,51 @@
                     <form>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Masukan Nama Siswa</label>
-                            <input type="text" wire:model="namasiswa" class="form-control" placeholder="Enter Name">
+                            <input type="text" wire:model.defer="namasiswa" class="form-control" placeholder="Enter Name">
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Masukan Nama prestasi</label>
-                            <input type="text" class="form-control" placeholder="Enter email" wire:model="prestasi">
+                            <input type="text" class="form-control" placeholder="Enter email" wire:model.defer="prestasi">
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Masukan Poin</label>
-                            <input type="text" class="form-control" placeholder="Enter email" wire:model="poin">
+                            <input type="text" class="form-control" placeholder="Enter email" wire:model.defer="poin">
                         </div>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button wire:click="stores()" class="btn btn-primary" data-dismiss="modal">Send
+                        <button type="button" class="btn btn-secondary" wire:click.prevent='closeCreate'>Close</button>
+                        <button wire:click.prevent="stores()" class="btn btn-primary">Send
+                            message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" wire:ignore>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Record Penghargaan</h5>
+                    <button type="button" class="close" wire:ignore wire:click.prevent='closeUpdate'>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" wire:model.defer="selected_id">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Masukan Nama Siswa</label>
+                            <input type="text" wire:model.defer="namasiswa" class="form-control" placeholder="Enter Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Masukan Nama prestasi</label>
+                            <input type="text" class="form-control" placeholder="Enter email" wire:model.defer="prestasi">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Masukan Poin</label>
+                            <input type="text" class="form-control" placeholder="Enter email" wire:model.defer="poin">
+                        </div>
+                        <button type="button" class="btn btn-secondary" wire:click.prevent='closeUpdate'>Close</button>
+                        <button wire:click.prevent="update()" class="btn btn-primary">Send
                             message</button>
                     </form>
                 </div>
@@ -34,8 +67,6 @@
     <div class="d-flex justify-content-between align-content-center mb-2">
         <div class="d-flex">
             <div>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Buat
-                    Pelanggaran</button>
                 <div class="d-flex align-items-center ml-4">
                     <label for="paginate" class="text-nowrap mr-2 mb-0">Per Page</label>
                     <select wire:model="paginate" name="paginate" id="paginate" class="form-control form-control-sm">
@@ -48,33 +79,38 @@
 
             <div>
                 @if ($checked)
-                    <div class="dropdown ml-4">
-                        <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">With Checked
-                            ({{ count($checked) }})</button>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item" type="button"
-                                onclick="confirm('Are you sure you want to delete these Records?') || event.stopImmediatePropagation()"
-                                wire:click="deleteRecords()">
-                                Delete
-                            </a>
-                            <a href="#" class="dropdown-item" type="button"
-                                onclick="confirm('Are you sure you want to export these Records?') || event.stopImmediatePropagation()"
-                                wire:click="exportSelected()">
-                                Export
-                            </a>
-
-                        </div>
+                <div class="dropdown ml-4">
+                    <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">With Checked
+                        ({{ count($checked) }})</button>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item" type="button"
+                            onclick="confirm('Are you sure you want to delete these Records?') || event.stopImmediatePropagation()"
+                            wire:click="deleteRecords()">
+                            Delete
+                        </a>
+                        <a href="#" class="dropdown-item" type="button"
+                            onclick="confirm('Are you sure you want to export these Records?') || event.stopImmediatePropagation()"
+                            wire:click="exportSelected()">
+                            Export
+                        </a>
                     </div>
+                </div>
                 @endif
             </div>
         </div>
-        <div class=" col-md-4">
-            <input type="search" wire:model.debounce.500ms="search" class="form-control" placeholder="Search">
+        <div align="center">
+            @include('backend.includes.livewire_flash_messages')
+        </div>
+        <div class=" col-md-2">
+            <button type="button" class="btn btn-primary" wire:click.prevent='showCreate'>Buat
+                Record Prestasi</button>
         </div>
     </div>
-
-    <div class="col-md-10 mt-3">
-        @include('backend.includes.livewire_flash_messages')
+    
+    <div class="d-flex justify-content-center">
+        <div class="col-md-3">
+            <input type="search" wire:model.debounce.500ms="search" class="form-control" placeholder="Search">
+        </div>
     </div>
     <br>
 
@@ -119,16 +155,13 @@
                         <td>{{ $student->poin }}</td>
                         <td>{{ $student->getpelapor->name }}</td>
                         <td>
-                            <button class="btn btn-danger btn-sm"
-                                onclick="confirm('Are you sure you want to delete this record?') || event.stopImmediatePropagation()"
-                                wire:click="deleteSingleRecord({{ $student->id }})"><i class="fa fa-trash"
-                                    aria-hidden="true"></i></button>
+                            <button wire:click.prevent="edit({{ $student->id }})" class="btn btn-primary btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></button>
+                            <button class="btn btn-danger btn-sm" onclick="confirm('Are you sure you want to delete this record?') || event.stopImmediatePropagation()" wire:click="deleteSingleRecord({{ $student->id }})"><i class="fa fa-trash" aria-hidden="true"></i></button>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-
     </div>
     <div class="row mt-4">
         <div class="col-sm-6 offset-5">
