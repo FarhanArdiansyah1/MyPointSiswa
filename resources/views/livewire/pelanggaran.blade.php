@@ -4,7 +4,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Buat Record Penghargaan</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Buat Record Pelanggaran</h5>
                     <button type="button" class="close" wire:click.prevent='closeCreate'>
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -15,14 +15,24 @@
                             <label for="recipient-name" class="col-form-label">Masukan Nama Siswa</label>
                             <input type="text" wire:model.defer="namasiswa" class="form-control" placeholder="Nama">
                         </div>
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Masukan Nama prestasi</label>
-                            <input type="text" class="form-control" placeholder="Prestasi" wire:model.defer="prestasi">
+                        <div>
+                            <label for="eta">Pilih Pelanggaran :</label>
+                            <select name="form-control" id="eta" wire:model="idpelanggaran">
+                                <option>Pilih Pelanggaran</option>
+                                @foreach ($pelanggaran as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama_pelanggaran }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Masukan Poin</label>
-                            <input type="text" class="form-control" placeholder="Poin" wire:model.defer="poin">
+                        <div>
+                            <label for="recipient-name" class="col-form-label">Poin Pelanggaran :</label>
+                            <select name="form-control" id="" wire:model="idpelanggaran" disabled>
+                                @foreach ($pelanggaran as $item)
+                                    <option value="{{ $item->id }}">{{ $item->poin }}</option>
+                                @endforeach
+                            </select>
                         </div>
+                        <br>
                         <button type="button" class="btn btn-secondary" wire:click.prevent='closeCreate'>Close</button>
                         <button wire:click.prevent="stores()" class="btn btn-primary">Create</button>
                     </form>
@@ -35,7 +45,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Record Penghargaan</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Record Pelanggaran</h5>
                     <button type="button" class="close" wire:ignore wire:click.prevent='closeUpdate'>
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -47,14 +57,23 @@
                             <label for="recipient-name" class="col-form-label">Masukan Nama Siswa</label>
                             <input type="text" wire:model.defer="namasiswa" class="form-control" placeholder="Nama">
                         </div>
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Masukan Nama prestasi</label>
-                            <input type="text" class="form-control" placeholder="Prestasi" wire:model.defer="prestasi">
+                        <div>
+                            <label for="eta">Pilih Pelanggaran :</label>
+                            <select name="form-control" id="eta" wire:model="idpelanggaran">
+                                @foreach ($pelanggaran as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama_pelanggaran }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Masukan Poin</label>
-                            <input type="text" class="form-control" placeholder="Poin" wire:model.defer="poin">
+                        <div>
+                            <label for="recipient-name" class="col-form-label">Poin Pelanggaran :</label>
+                            <select name="form-control" id="" wire:model="idpelanggaran" disabled>
+                                @foreach ($pelanggaran as $item)
+                                    <option value="{{ $item->id }}">{{ $item->poin }}</option>
+                                @endforeach
+                            </select>
                         </div>
+                        <br>
                         <button type="button" class="btn btn-secondary" wire:click.prevent='closeUpdate'>Close</button>
                         <button wire:click.prevent="update()" class="btn btn-primary">Edit</button>
                     </form>
@@ -138,7 +157,7 @@
                     <th>Nama Siswa</th>
                     <th>NIS</th>
                     <th>Kelas</th>
-                    <th>Prestasi</th>
+                    <th>Pelanggaran</th>
                     <th>Poin</th>
                     <th>pelapor</th>
                     <th>Action</th>
@@ -149,8 +168,8 @@
                         <td>{{ $student->getsiswa->name }}</td>
                         <td>{{ $student->getsiswa->nis_nim_nik }}</td>
                         <td>{{ $student->getsiswa->kelas }}</td>
-                        <td>{{ $student->prestasi }}</td>
-                        <td>{{ $student->poin }}</td>
+                        <td>{{ $student->getpelanggaran->nama_pelanggaran }}</td>
+                        <td>{{ $student->getpelanggaran->poin }}</td>
                         <td>{{ $student->getpelapor->name }}</td>
                         <td>
                             <button wire:click.prevent="edit({{ $student->id }})" class="btn btn-primary btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></button>

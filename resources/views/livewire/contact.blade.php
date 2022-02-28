@@ -36,19 +36,26 @@
                                         placeholder="Enter Name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">Enter Emails</label>
+                                    <label for="recipient-name" class="col-form-label">Enter Emai</label>
                                     <input type="text" class="form-control" placeholder="Enter email"
                                         wire:model.defer="email">
                                 </div>
                                 <div class="form-group">
-                                    <select name="form-control" id="" wire:model="keresmianval">
-                                        <option value="{{ $keresmiann }}">{{ $keresmiannama }}</option>
+                                    <label for="recipient-name" class="col-form-label">Enter Emai</label>
+                                    <select name="form-control" wire:model="keresmianval">
                                         @foreach ($keresmian as $item)
                                             <option value="{{ $item->id }}">{{ $item->keresmian }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <div class="form-group">
+                                    <select wire:model="keresmianval" disabled>
+                                        @foreach ($keresmian as $item)
+                                            <option value="{{ $item->id }}">{{ $item->nomor }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" wire:click="resetInput">Close</button>
                                 <button wire:click.defer="update()" class="btn btn-primary" data-dismiss="modal">Send
                                     message</button>
                             </form>

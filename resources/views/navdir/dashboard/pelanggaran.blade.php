@@ -4,5 +4,5 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
+    <livewire:pelanggaran />
 </x-app-layout>

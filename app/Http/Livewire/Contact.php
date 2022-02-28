@@ -9,7 +9,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 class Contact extends Component
 {
-    public $data, $datas, $name, $email, $selected_id, $keresmian, $keresmianval, $keresmiannama;
+    public $data, $datas, $name, $email, $selected_id, $keresmian, $keresmianval;
     public $namasiswa,$idsiswa , $prestasi, $poin, $idpelapor;
     public $updateMode = false;
     public function render()
@@ -19,12 +19,17 @@ class Contact extends Component
         $this->keresmian = Keresmian::all();
         return view('livewire.contact');
     }
-    private function resetInput()
+
+    // public function mount(){
+
+    // }
+
+    public function resetInput()
     {
         $this->name = null;
         $this->email = null;
         $this->keresmianval = null;
-        $this->keresmiann = null;
+        $this->selected_id = null;
     }
     public function store()
     {
@@ -62,9 +67,32 @@ class Contact extends Component
         $this->selected_id = $id;
         $this->name = $record->name;
         $this->email = $record->email;
-        $this->keresmiannama = Keresmian::where('id', $record->keresmian_id)->value('keresmian');
-        $this->keresmiann = $record->keresmian_id;
         $this->updateMode = true;
+        $this->keresmianval = $record->keresmian_id;
+        $this->nilai = Keresmian::where('id', $this->keresmianval)->value('nomor');
+    }
+
+    
+    public function showCreate()
+    {
+        $this->dispatchBrowserEvent('show-create');
+    }
+
+    public function closeCreate()
+    {
+        $this->resetInput();
+        $this->dispatchBrowserEvent('close-create');
+    }
+
+    public function showUpdate()
+    {
+        $this->dispatchBrowserEvent('show-update');
+    }
+
+    public function closeUpdate()
+    {
+        $this->resetInput();
+        // $this->dispatchBrowserEvent('close-update');
     }
 
     public function edits($id)

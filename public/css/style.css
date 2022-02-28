@@ -31,3 +31,8 @@
 .icon-class-user:before {
   content: "\e901";
 }
+
+select:disabled {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}

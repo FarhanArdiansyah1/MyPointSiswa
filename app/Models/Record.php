@@ -18,6 +18,9 @@ class Record extends Model
     public function getsiswa(){
         return $this->belongsTo(User::class, 'id_siswa', 'id');
     }
+    public function getpelanggaran(){
+        return $this->belongsTo(Pelanggaran::class, 'id_pelanggaran', 'id');
+    }
     public function getpelapor(){
         return $this->belongsTo(User::class, 'id_pelapor', 'id');
     }
@@ -39,7 +42,13 @@ class Record extends Model
                 })
                 ->orWhereHas('getpelapor', function ($query) use ($term) {
                     $query->where('name', 'like', $term);
-                });;
+                })
+                ->orWhereHas('getpelanggaran', function ($query) use ($term) {
+                    $query->where('nama_pelanggaran', 'like', $term);
+                })
+                ->orWhereHas('getpelanggaran', function ($query) use ($term) {
+                    $query->where('poin', 'like', $term);
+                });
         });
     }
 }
