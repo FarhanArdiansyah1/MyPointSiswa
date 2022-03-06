@@ -53,7 +53,7 @@ class Siswa extends Component
     public function getStudentsQueryProperty()
     {
         return User::
-            search(trim($this->search));
+            search(trim($this->search))->where('jabatan','=', 'siswa');
     }
 
     public function deleteRecords()

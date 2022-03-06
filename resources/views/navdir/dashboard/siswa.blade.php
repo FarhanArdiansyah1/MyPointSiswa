@@ -5,6 +5,5 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-    <h1>test</h1>
     <livewire:siswa />
 </x-app-layout>

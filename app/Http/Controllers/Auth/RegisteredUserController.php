@@ -18,6 +18,9 @@ class RegisteredUserController extends Controller
      *
      * @return \Illuminate\View\View
      */
+
+    public $jabatan;
+
     public function create()
     {
         return view('auth.register');
@@ -37,13 +40,25 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'nis' => ['required'],
         ]);
+
+        // if($request->role_id = "admin"){
+        //     $jabatan = "admin";
+        // } elseif($request->role_id = "pelapor") {
+        //     $jabatan = "guru";
+        // } else {
+        //     $jabatan = "siswa";
+        // }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'nis_nim_nik' => $request->nis,
+            'jabatan' => $request->role_id 
         ]);
+
         $user->attachRole($request->role_id);
 
         event(new Registered($user));

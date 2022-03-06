@@ -28,7 +28,7 @@ Route::get('/', function () {
 Route::get('/tentang', function () {
     return view('navdir.home.tentang', [
         'title' => "Tentang",
-        'jumbojudul' => "Tentang Kami",
+        'jumbojudul' => "Tentang",
         'jumboisi' => ""
     ]);
 });

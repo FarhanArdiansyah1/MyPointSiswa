@@ -11,36 +11,17 @@
             {{ ucfirst(request()->segment(2)) }}
         @endif
     </title>
-    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href={{ asset('plugins/fontawesome-free/css/all.min.css') }}>
     <link rel="stylesheet" href={{ asset('css/style.css') }}>
-    <!-- Ionicons -->
-    {{-- <link rel="stylesheet" href={{ asset("https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css") }}> --}}
-    <!-- Tempusdominus Bbootstrap 4 -->
-    {{-- <link rel="stylesheet" href={{ asset("plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css") }}> --}}
-    <!-- iCheck -->
-    {{-- <link rel="stylesheet" href={{ asset("plugins/icheck-bootstrap/icheck-bootstrap.min.css") }}> --}}
-    <!-- JQVMap -->
-    {{-- <link rel="stylesheet" href={{ asset("plugins/jqvmap/jqvmap.min.css") }}> --}}
-    <!-- Theme style -->
     <link rel="stylesheet" href={{ asset('dist/css/adminlte.min.css') }}>
-    <!-- overlayScrollbars -->
     <link rel="stylesheet" href={{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}>
-    <!-- dataTables -->
-    {{-- <link rel="stylesheet" href={{ asset("plugins/datatables/datatables.css") }}> --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
-    <!-- Daterange picker -->
-    {{-- <link rel="stylesheet" href={{ asset("plugins/daterangepicker/daterangepicker.css") }}> --}}
-    <!-- summernote -->
-    {{-- <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css"> --}}
-    <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 @livewireStyles
@@ -99,7 +80,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-2 pb-2 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
+                        <img src="{{ asset('aset/test.png') }}" class="img-circle elevation-2"
                             alt="User Image">
                     </div>
                     <div class="info">
@@ -139,7 +120,7 @@
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item has-treeview">
+                            {{-- <li class="nav-item has-treeview">
                                 <a href="{{ url('pelapor/kelas') }}"
                                     class="nav-link {{ request()->segment(2) == 'kelas' ? 'active' : '' }}">
                                     <i class="nav-icon fas icon-class-user"></i>
@@ -147,7 +128,7 @@
                                         Kelas
                                     </p>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item has-treeview">
                                 <a href="{{ url('pelapor/siswa') }}"
                                     class="nav-link {{ request()->segment(2) == 'siswa' ? 'active' : '' }}">
@@ -157,7 +138,7 @@
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item has-treeview">
+                            {{-- <li class="nav-item has-treeview">
                                 <a href="{{ route('pelapor.books.index') }}"
                                     class="nav-link {{ request()->segment(2) == 'books' ? 'active' : '' }}">
                                     <i class="nav-icon fas icon-class-user"></i>
@@ -165,7 +146,7 @@
                                         Contoh
                                     </p>
                                 </a>
-                            </li>
+                            </li> --}}
                         @endrole
                         @role('admin')
                             <li class="nav-item has-treeview">
@@ -186,7 +167,7 @@
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item has-treeview">
+                            {{-- <li class="nav-item has-treeview">
                                 <a href="{{ url('admin/kelas') }}"
                                     class="nav-link {{ request()->segment(2) == 'kelas' ? 'active' : '' }}">
                                     <i class="nav-icon fas icon-class-user"></i>
@@ -194,7 +175,7 @@
                                         Kelas
                                     </p>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item has-treeview">
                                 <a href="{{ url('admin/siswa') }}"
                                     class="nav-link {{ request()->segment(2) == 'siswa' ? 'active' : '' }}">
@@ -204,7 +185,7 @@
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item has-treeview">
+                            {{-- <li class="nav-item has-treeview">
                                 <a href="{{ url('admin/contacts') }}"
                                     class="nav-link {{ request()->segment(2) == 'books' ? 'active' : '' }}">
                                     <i class="nav-icon fas icon-class-user"></i>
@@ -212,7 +193,7 @@
                                         Contoh
                                     </p>
                                 </a>
-                            </li>
+                            </li> --}}
                         @endrole
                     </ul>
                 </nav>
@@ -261,7 +242,6 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    {{-- <script src={{ asset("plugins/jquery/jquery.min.js") }}></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -276,23 +256,6 @@
     </script>
     <!-- Bootstrap 4 -->
     <script src={{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}></script>
-    <!-- ChartJS -->
-    {{-- <script src={{ asset("plugins/chart.js/Chart.min.js") }}></script> --}}
-    <!-- Sparkline -->
-    {{-- <script src={{ asset("plugins/sparklines/sparkline.js") }}></script> --}}
-    <!-- JQVMap -->
-    {{-- <script src={{ asset("plugins/jqvmap/jquery.vmap.min.js") }}></script> --}}
-    {{-- <script src={{ asset("plugins/jqvmap/maps/jquery.vmap.usa.js") }}></script> --}}
-    <!-- jQuery Knob Chart -->
-    {{-- <script src={{ asset("plugins/jquery-knob/jquery.knob.min.js") }}></script> --}}
-    <!-- daterangepicker -->
-    {{-- <script src={{ asset("plugins/moment/moment.min.js") }}></script> --}}
-    {{-- <script src={{ asset("plugins/daterangepicker/daterangepicker.js") }}></script> --}}
-    <!-- Tempusdominus Bootstrap 4 -->
-    {{-- <script src={{ asset("plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js") }}></script> --}}
-    <!-- Summernote -->
-    {{-- <script src={{ asset("plugins/summernote/summernote-bs4.min.js") }}></script> --}}
-    <!-- overlayScrollbars -->
     <script src={{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}></script>
     <!-- AdminLTE App -->
     <script src={{ asset('dist/js/adminlte.js') }}></script>

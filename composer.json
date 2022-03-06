@@ -13,9 +13,9 @@
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.10",
         "maatwebsite/excel": "^3.1",
+        "phpoffice/phpspreadsheet": "^1.22",
         "psr/simple-cache": "^1.0",
-        "santigarcor/laratrust": "^6.3",
-        "yajra/laravel-datatables-oracle": "~9.0"
+        "santigarcor/laratrust": "^6.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

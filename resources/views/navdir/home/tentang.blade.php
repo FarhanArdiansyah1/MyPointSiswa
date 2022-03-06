@@ -2,7 +2,7 @@
 
 @section('container')
     <div id="tentang" class="container">
-        <div id="bagian-content-tentang">
+        {{-- <div id="bagian-content-tentang">
             <h2 class="fw-bolder display-4">NEODEV</h2>
             <p>
                 Neo Developer atau NEODEV adalah company yang berjalan
@@ -30,10 +30,10 @@
                 <p>B. Menerapkan kedisiplinan dan kerjasama tim yang baik dengan saling support dan
                     memberikan solusi untuk pengoptimalan kinerja perusahaan.</p>
             </div>
-        </div>
+        </div> --}}
     </div>
-    {{-- 4 kartu --}}
-    <div id="bagian-pawprint-home">
+
+    {{-- <div id="bagian-pawprint-home">
         <div class="background-cover"></div>
 
         <div class="pawprint-judul container" style="padding-top: 10px; padding-bottom: 0px;">
@@ -43,34 +43,34 @@
         </div>
 
         <div class="pawprint-isi container d-flex" style="padding-top: 0px; padding-bottom: 0px;">
-            {{-- 1 --}}
+            
             <div class="pawprint">
                 <img src="aset/pawprint.svg" id="paw" alt="paw">
                 <h5 class="fw-bold">Agung Kurniawan</h5>
                 <p>CFO & Front-End Developer</p>
             </div>
-            {{-- 2 --}}
+            
             <div class="pawprint">
                 <img src="aset/farhan.png" id="paw" alt="paw">
                 <h5 class="fw-bold">Farhan Ardiansyah</h5>
                 <p>Full-Stack Developer
                 </p>
             </div>
-            {{-- 3 --}}
+            
             <div class="pawprint">
                 <img src="aset/Farshal.jpeg" id="paw" alt="paw">
                 <h5 class="fw-bold">Farshal Rauzani Yuzka</h5>
                 <p>Back-End Developer
                 </p>
             </div>
-            {{-- 4 --}}
+            
             <div class="pawprint">
                 <img src="Hilman.jpeg" id="paw" alt="paw">
                 <h5 class="fw-bold">Hilman Arasyid</h5>
                 <p>CEO & System Analyst
                 </p>
             </div>
-            {{-- 5 --}}
+            
             <div class="pawprint">
                 <img src="aset/pawprint.svg" id="paw" alt="paw">
                 <h5 class="fw-bold">Intan Puja Zaeni</h5>
@@ -78,5 +78,5 @@
                 </p>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
