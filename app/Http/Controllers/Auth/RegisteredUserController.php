@@ -19,7 +19,6 @@ class RegisteredUserController extends Controller
      * @return \Illuminate\View\View
      */
 
-    public $jabatan;
 
     public function create()
     {
@@ -43,21 +42,34 @@ class RegisteredUserController extends Controller
             'nis' => ['required'],
         ]);
 
-        // if($request->role_id = "admin"){
-        //     $jabatan = "admin";
-        // } elseif($request->role_id = "pelapor") {
-        //     $jabatan = "guru";
-        // } else {
-        //     $jabatan = "siswa";
-        // }
+        $this->poin = 3000;
+        if($request->role_id === 'siswa'){
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'nis_nim_nik' => $request->nis,
+                'jabatan' => $request->role_id,
+                'poin' => $this->poin
+            ]);
+        } else {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'nis_nim_nik' => $request->nis,
+                'jabatan' => $request->role_id,
+            ]);
+        }
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'nis_nim_nik' => $request->nis,
-            'jabatan' => $request->role_id 
-        ]);
+        // $user = User::create([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'password' => Hash::make($request->password),
+        //     'nis_nim_nik' => $request->nis,
+        //     'jabatan' => $request->role_id,
+        //     'poin' => $this->poin
+        // ]);
 
         $user->attachRole($request->role_id);
 

@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('jabatan', 30)->nullable();
             $table->string('kelas', 15)->nullable();
             $table->string('nis_nim_nik', 30)->nullable();
+            $table->bigInteger('poin')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

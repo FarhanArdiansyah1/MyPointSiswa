@@ -15,14 +15,16 @@ return [
         'admin' => [
             'users' => 'c,r,u,d',
             'payments' => 'c,r,u,d',
-            'profile' => 'r,u'
+            'profile' => 'c,r,u,d'
         ],
         'pelapor' => [
-            'users' => 'c,r,u,d',
+            'users' => 'r',
             'payments' => 'c,r,u,d',
             'profile' => 'r,u'
         ],
         'siswa' => [
+            'users' => 'r',
+            'payments' => 'r',
             'profile' => 'r,u',
         ]
     ],
