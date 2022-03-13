@@ -97,8 +97,6 @@ class Pelanggaran extends Component
 
     public function deleteRecords()
     {
-        // Record::whereKey($this->checked)->delete();
-        // $this->checked = [];
         foreach ($this->checked as $check) {
             $record = Record::findOrFail($check);
             $poinsiswa = User::where('id', $record->id_siswa)->where('jabatan', 'siswa')->value('poin');
@@ -110,7 +108,6 @@ class Pelanggaran extends Component
             ]);
             Record::whereKey($check)->delete();
         }
-        // dd($this->checked);
         $this->checked = [];
         $this->selectAll = false;
         $this->selectPage = false;
@@ -209,12 +206,14 @@ class Pelanggaran extends Component
                 'id_pelapor' => $this->idpelapor,
                 'id_siswa' => $this->idsiswa
             ]);
+            //update siswa lama
             $this->poinsiswa = User::where('name', $this->namesiswa)->where('jabatan', 'siswa')->value('poin');
             $this->updatepoinsiswa = $this->poinsiswa + $this->poinpel;
             $user = User::find($this->idasalsiswa);
             $user->update([
                 'poin' => $this->updatepoinsiswa,
             ]);
+            //update siswa baru
             $this->poinsiswa1 = User::where('name', $this->namasiswa)->where('jabatan', 'siswa')->value('poin');
             $this->poinpelanggaran = Pelanggarans::where('id', $this->idpelanggaran)->value('poin');
             $this->updatepoinsiswa1 = $this->poinsiswa1 - $this->poinpelanggaran;
@@ -225,17 +224,6 @@ class Pelanggaran extends Component
         }
         $this->resetInput();
         $this->dispatchBrowserEvent('close-update');
-        // $record = Record::find($this->selected_id);
-        // $this->idsiswa = User::where('name', $this->namasiswa)->where('jabatan', 'siswa')->value('id');
-        // $this->idpelapor = Auth::user()->id;
-        // $record->update([
-        //     'id_pelanggaran' => $this->idpelanggaran,
-        //     'id_pelapor' => $this->idpelapor,
-        //     'id_siswa' => $this->idsiswa
-        // ]);
-        // $this->resetInput();
-        // $this->updateMode = false;
-        // $this->dispatchBrowserEvent('close-update');
     }
 
     private function resetInput()

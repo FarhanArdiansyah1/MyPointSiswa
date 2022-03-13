@@ -43,6 +43,9 @@
                 <div class="modal-body">
                     <form>
                         <input type="hidden" wire:model.defer="selected_id">
+                        <input type="hidden" wire:model.defer="poinpeng">
+                        <input type="hidden" wire:model.defer="namesiswa">
+                        <input type="hidden" wire:model.defer="idasalsiswa">
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Masukan Nama Siswa</label>
                             <input type="text" wire:model.defer="namasiswa" class="form-control" placeholder="Nama">

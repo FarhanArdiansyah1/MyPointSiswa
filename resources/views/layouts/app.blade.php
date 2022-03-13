@@ -194,6 +194,15 @@
                                     </p>
                                 </a>
                             </li> --}}
+                            {{-- <li class="nav-item has-treeview">
+                                <a href="#"
+                                    class="nav-link {{ request()->segment(2) == 'datapelanggaran' ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-database"></i>
+                                    <p>
+                                        Data Pelanggaran
+                                    </p>
+                                </a>
+                            </li> --}}
                         @endrole
                     </ul>
                 </nav>

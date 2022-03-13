@@ -91,6 +91,16 @@ class Penghargaan extends Component
 
     public function deleteRecords()
     {
+        foreach ($this->checked as $check) {
+            $record = Record::findOrFail($check);
+            $poinsiswa = User::where('id', $record->id_siswa)->where('jabatan', 'siswa')->value('poin');
+            $poinupdate = $poinsiswa - $record->poin;
+            $user = User::find($record->id_siswa);
+            $user->update([
+                'poin' => $poinupdate,
+            ]);
+            Record::whereKey($check)->delete();
+        }
         Record::whereKey($this->checked)->delete();
         $this->checked = [];
         $this->selectAll = false;
@@ -106,8 +116,14 @@ class Penghargaan extends Component
 
     public function deleteSingleRecord($student_id)
     {
-        $student = Record::findOrFail($student_id);
-        $student->delete();
+        $record = Record::findOrFail($student_id);
+        $poinsiswa = User::where('id', $record->id_siswa)->where('jabatan', 'siswa')->value('poin');
+        $poinupdate = $poinsiswa - $record->poin;
+        $user = User::find($record->id_siswa);
+        $user->update([
+            'poin' => $poinupdate,
+        ]);
+        $record->delete();
         $this->checked = array_diff($this->checked, [$student_id]);
         session()->flash('info', 'Record deleted Successfully');
     }
@@ -120,28 +136,36 @@ class Penghargaan extends Component
     public function stores()
     {
         $this->idsiswa = User::where('name', $this->namasiswa)->where('jabatan', 'siswa')->value('id');
-        if (empty($this->idsiswa)) {
-        } else {
-            $this->validate([
-                'prestasi' => 'required',
-                'poin' => 'required'
-            ]);
-            $this->idpelapor = Auth::user()->id;
-            Record::create([
-                'prestasi' => $this->prestasi,
-                'poin' => $this->poin,
-                'id_pelapor' => $this->idpelapor,
-                'id_siswa' => $this->idsiswa
-            ]);
-            $this->resetInput();
-            $this->dispatchBrowserEvent('close-create');
-        }
+        $this->validate([
+            'idsiswa' => 'required',
+            'prestasi' => 'required',
+            'poin' => 'required'
+        ]);
+        $this->idpelapor = Auth::user()->id;
+        Record::create([
+            'prestasi' => $this->prestasi,
+            'poin' => $this->poin,
+            'id_pelapor' => $this->idpelapor,
+            'id_siswa' => $this->idsiswa
+        ]);
+        $poinsiswa = User::where('name', $this->namasiswa)->where('jabatan', 'siswa')->value('poin');
+        $poinupdate = $poinsiswa + $this->poin;
+        $record = User::find($this->idsiswa);
+        $record->update([
+            'poin' => $poinupdate,
+        ]);
+        $this->resetInput();
+        $this->dispatchBrowserEvent('close-create');
     }
 
     public function edit($id)
     {
         $record = Record::findOrFail($id);
         $this->selected_id = $id;
+        $this->poinpeng = $record->poin;
+        $this->namesiswa = User::where('id', $record->id_siswa)->value('name');
+        $this->idasalsiswa = $record->id_siswa;
+
         $this->poin = $record->poin;
         $this->prestasi = $record->prestasi;
         $this->namasiswa = User::where('id', $record->id_siswa)->value('name');
@@ -150,14 +174,48 @@ class Penghargaan extends Component
 
     public function update()
     {
-        $record = Record::find($this->selected_id);
-
-        $record->update([
-            'poin' => $this->poin,
-            'prestasi' => $this->prestasi,
-        ]);
+        if ($this->namesiswa === $this->namasiswa) {
+            $record = Record::find($this->selected_id);
+            $this->idsiswa = User::where('name', $this->namasiswa)->where('jabatan', 'siswa')->value('id');
+            $this->idpelapor = Auth::user()->id;
+            $record = Record::find($this->selected_id);
+            $record->update([
+                'poin' => $this->poin,
+                'prestasi' => $this->prestasi,
+                'id_siswa' => $this->idsiswa,
+                'id_pelapor' => $this->idpelapor,
+            ]);
+            $this->poinsiswa = User::where('name', $this->namasiswa)->where('jabatan', 'siswa')->value('poin');
+            $this->updatepoinsiswa = $this->poinsiswa - $this->poinpeng + $this->poin;
+            $user = User::find($this->idsiswa);
+            $user->update([
+                'poin' => $this->updatepoinsiswa,
+            ]);
+        } else {
+            $record = Record::find($this->selected_id);
+            $this->idsiswa = User::where('name', $this->namasiswa)->where('jabatan', 'siswa')->value('id');
+            $this->idpelapor = Auth::user()->id;
+            $record = Record::find($this->selected_id);
+            $record->update([
+                'poin' => $this->poin,
+                'prestasi' => $this->prestasi,
+                'id_siswa' => $this->idsiswa,
+                'id_pelapor' => $this->idpelapor,
+            ]);
+            $this->poinsiswa = User::where('name', $this->namesiswa)->where('jabatan', 'siswa')->value('poin');
+            $this->updatepoinsiswa = $this->poinsiswa - $this->poinpeng;
+            $user = User::find($this->idasalsiswa);
+            $user->update([
+                'poin' => $this->updatepoinsiswa,
+            ]);
+            $this->poinsiswa1 = User::where('name', $this->namasiswa)->where('jabatan', 'siswa')->value('poin');
+            $this->updatepoinsiswa1 = $this->poinsiswa1 + $this->poin;
+            $user1 = User::find($this->idsiswa);
+            $user1->update([
+                'poin' => $this->updatepoinsiswa1,
+            ]);
+        }
         $this->resetInput();
-        $this->updateMode = false;
         $this->dispatchBrowserEvent('close-update');
     }
 
