@@ -4,10 +4,11 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Exports\StudentsExport;
+use App\Exports\PenghargaansExport;
 use App\Models\Record;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Penghargaan extends Component
 {
@@ -46,6 +47,7 @@ class Penghargaan extends Component
 
     public function render()
     {
+        $this->test = DB::table("record_data")->sum('poin');
         return view('livewire.penghargaan', [
             'students' => $this->students,
             'classes' => User::all(),
@@ -110,7 +112,7 @@ class Penghargaan extends Component
 
     public function exportSelected()
     {
-        return (new StudentsExport($this->checked))->download('students.xlsx');
+        return (new PenghargaansExport($this->checked))->download('students.xlsx');
     }
 
 

@@ -27,6 +27,7 @@ class CreateRecordDataTable extends Migration
             $table->foreign('id_pelapor')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->text('keterangan')->nullable();
+            $table->timestamps();
         });
     }
     /**

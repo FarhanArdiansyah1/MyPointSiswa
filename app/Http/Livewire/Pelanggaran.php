@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Exports\StudentsExport;
+use App\Exports\PelanggaransExport;
 use App\Models\Record;
 use App\Models\Pelanggaran as Pelanggarans;
 use App\Models\User;
@@ -116,7 +116,7 @@ class Pelanggaran extends Component
 
     public function exportSelected()
     {
-        return (new StudentsExport($this->checked))->download('students.xlsx');
+        return (new PelanggaransExport($this->checked))->download('students.xlsx');
     }
 
 

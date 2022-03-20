@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Record extends Model
 {
     use HasFactory;
-    public $timestamps = false;
     protected $guarded = [];
     protected $table = 'record_data';
     protected $primaryKey = 'id';
