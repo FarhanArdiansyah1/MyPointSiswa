@@ -42,7 +42,7 @@ class RegisteredSiswaController extends Controller
             'nis' => ['required'],
         ]);
 
-        $this->poin = 3000;
+        $poin = 3000;
         $role_id = "siswa";
         $user = User::create([
             'name' => $request->name,
@@ -50,8 +50,8 @@ class RegisteredSiswaController extends Controller
             'password' => Hash::make($request->password),
             'nis_nim_nik' => $request->nis,
             'jabatan' => $role_id,
-            'poin' => $this->poin,
-            // 'kelas' => $this->kelas
+            'poin' => $poin,
+            'kelas' => $request->kelas
         ]);
 
 
