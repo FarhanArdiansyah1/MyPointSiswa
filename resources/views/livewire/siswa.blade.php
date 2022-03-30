@@ -37,7 +37,7 @@
         </div>
         <div class=" col-md-4">
             <input type="search" wire:model.debounce.500ms="search" class="form-control"
-                placeholder="Search by name,email,phone,or address...">
+                placeholder="Search">
         </div>
     </div>
 
@@ -73,7 +73,9 @@
                     <th>NIS</th>
                     <th>Kelas</th>
                     <th>Poin</th>
+                    @role('admin')
                     <th>Action</th>
+                    @endrole
                 </tr>
                 @foreach ($students as $student)
                     <tr class="@if ($this->isChecked($student->id)) table-primary @endif">
@@ -82,12 +84,14 @@
                         <td>{{ $student->nis_nim_nik }}</td>
                         <td>{{ $student->kelas }}</td>
                         <td>{{ $student->poin }}</td>
+                        @role('admin')
                         <td>
                             <button class="btn btn-danger btn-sm"
                                 onclick="confirm('Are you sure you want to delete this record?') || event.stopImmediatePropagation()"
                                 wire:click="deleteSingleRecord({{ $student->id }})"><i class="fa fa-trash"
                                     aria-hidden="true"></i></button>
                         </td>
+                        @endrole
                     </tr>
                 @endforeach
             </tbody>

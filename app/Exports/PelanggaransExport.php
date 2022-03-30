@@ -38,6 +38,8 @@ ShouldAutoSize
             $record->getsiswa->nis_nim_nik,
             $record->getpelanggaran->nama_pelanggaran,
             $record->getpelanggaran->poin,
+            $record->getpelapor->name,
+            $record->created_at
         ];
     }
 
@@ -48,7 +50,9 @@ ShouldAutoSize
             'Kelas',
             'NIS',
             'Pelanggaran',
-            'Poin'
+            'Poin',
+            'Pelapor',
+            "Waktu"
         ];
     }
 }

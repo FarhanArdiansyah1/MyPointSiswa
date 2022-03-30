@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
-class RegisteredUserController extends Controller
+class RegisteredSiswaController extends Controller
 {
     /**
      * Display the registration view.
@@ -22,7 +22,7 @@ class RegisteredUserController extends Controller
 
     public function create()
     {
-        return view('auth.register');
+        return view('auth.registersiswa');
     }
 
     /**
@@ -43,26 +43,17 @@ class RegisteredUserController extends Controller
         ]);
 
         $this->poin = 3000;
-        if($request->role_id === 'siswa'){
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'nis_nim_nik' => $request->nis,
-                'jabatan' => $request->role_id,
-                'poin' => $this->poin,
-                // 'kelas' => $this->kelas
-            ]);
-        } else {
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'nis_nim_nik' => $request->nis,
-                'jabatan' => $request->role_id,
-                // 'kelas' => $this->kelas
-            ]);
-        }
+        $role_id = "siswa";
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'nis_nim_nik' => $request->nis,
+            'jabatan' => $role_id,
+            'poin' => $this->poin,
+            // 'kelas' => $this->kelas
+        ]);
+
 
         // $user = User::create([
         //     'name' => $request->name,
@@ -73,7 +64,7 @@ class RegisteredUserController extends Controller
         //     'poin' => $this->poin
         // ]);
 
-        $user->attachRole($request->role_id);
+        $user->attachRole($role_id);
 
         event(new Registered($user));
 

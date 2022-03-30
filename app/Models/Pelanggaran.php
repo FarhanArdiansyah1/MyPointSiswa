@@ -19,4 +19,13 @@ class Pelanggaran extends Model
     public function getrecord(){
         return $this->hasMany(Record::class);
     }
+
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function ($query) use ($term) {
+            $query->where('nama_pelanggaran', 'like', $term)
+                ->orWhere('poin', 'like', $term);
+        });
+    }
 }

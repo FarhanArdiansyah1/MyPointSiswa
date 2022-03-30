@@ -9,6 +9,7 @@ use App\Models\Record;
 use App\Models\Pelanggaran as Pelanggarans;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class Pelanggaran extends Component
 {

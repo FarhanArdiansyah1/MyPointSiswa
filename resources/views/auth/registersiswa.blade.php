@@ -6,6 +6,10 @@
             </a>
         </x-slot>
 
+        <center><h1>Register sebagai Siswa</h1></center>
+        <br>
+        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ url('register') }}">{{ __('Register sebagai Admin/Pelapor?') }}</a>
+        <br>
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
@@ -46,46 +50,21 @@
             </div>
 
             <div class="mt-4">
-                <x-label for="nis" :value="__('ID (NIS/NIM/NUPTK)')" />
+                <x-label for="nis" :value="__('Nomor Induk Sekolah(NIS)')" />
 
                 <x-input id="nis" class="block mt-1 w-full" type="text" name="nis" :value="old('nis')" required />
             </div>
 
-            <!-- Role Selection -->
             <div class="mt-4">
-                <x-label for="role_id" value="{{ __('Register as:') }}" />
-                <select name="role_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sn">
-                    <option value="admin">Admin</option>
-                    <option value="pelapor">Pelapor</option>
-                    <!-- <option value="siswa">Siswa</option> -->
-                </select>
-            </div>
+                <x-label for="kelas" :value="__('Kelas')" />
 
-            <!-- <div class="mt-4">
-                <x-label for="kelas" value="{{ __('Register as:') }}" />
-                <select name="kelas" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sn">
-                    <option value="XII - RPL 1">XII - RPL 1</option>
-                    <option value="xii - RPL 2">XII - RPL 2</option>
-                    <option value="XII - RPL 3">XII - RPL 3</option>
-                    <option value="xii - TKJ 1">XII - TKJ 1</option>
-                    <option value="XII - TKJ 2">XII - TKJ 2</option>
-                    <option value="xii - MM">XII - MM</option>
-                    <option value="XII - ">XII -</option>
-                    <option value="xii - ">XII - </option>
-                    <option value="XII - ">XII - </option>
-                    <option value="xii - ">XII - </option>
-                    <option value="XII - ">XII - </option>
-                    <option value="xii - ">XII - </option>
-                    <option value="XII - ">XII - </option>
-                    <option value="siswa">Siswa</option>
-                </select>
-            </div> -->
+                <x-input id="kelas" class="block mt-1 w-full" type="text" name="kelas" :value="old('kelas')" required />
+            </div>
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
-
                 <x-button class="ml-4">
                     {{ __('Register') }}
                 </x-button>

@@ -6,6 +6,7 @@ use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Exports\StudentsExport;
+use App\Models\Pelanggaran;
 
 class Datapelanggaran extends Component
 {
@@ -15,8 +16,36 @@ class Datapelanggaran extends Component
     public $checked = [];
     public $selectPage = false;
     public $selectAll = false;
+    public $poin, $namapel;
     protected $paginationTheme = 'bootstrap';
 
+    public function showCreate()
+    {
+        $this->dispatchBrowserEvent('show-create');
+    }
+
+    public function closeCreate()
+    {
+        $this->resetInput();
+        $this->dispatchBrowserEvent('close-create');
+    }
+
+    public function showUpdate()
+    {
+        $this->dispatchBrowserEvent('show-update');
+    }
+
+    public function closeUpdate()
+    {
+        $this->resetInput();
+        $this->dispatchBrowserEvent('close-update');
+    }
+
+    private function resetInput()
+    {
+        $this->namapel = null;
+        $this->poin = null;
+    }
 
     public function render()
     {
@@ -52,8 +81,7 @@ class Datapelanggaran extends Component
 
     public function getStudentsQueryProperty()
     {
-        return User::
-            search(trim($this->search))->where('jabatan','=', 'siswa');
+        return Pelanggaran::search(trim($this->search));
     }
 
     public function deleteRecords()
@@ -84,4 +112,44 @@ class Datapelanggaran extends Component
         return in_array($student_id, $this->checked);
     }
 
+    public function stores()
+    {
+        $this->validate([
+            'namapel' => 'required',
+            'poin' => 'required',
+        ]);
+        Pelanggaran::create([
+            'nama_pelanggaran' => $this->namapel,
+            'poin' => $this->poin,
+        ]);
+        $this->resetInput();
+        $this->dispatchBrowserEvent('close-create');
+    }
+
+    public function edit($id)
+    {
+        $record = Pelanggaran::findOrFail($id);
+        //data yang masuk input hide untuk dibawa ke fungsi berikutnya (update)
+        $this->selected_id = $id;
+        $this->poin = $record->poin;
+        $this->namapel = $record->nama_pelanggaran;
+        // event showmodal ke jquery
+        $this->dispatchBrowserEvent('show-update');
+    }
+
+    public function update()
+    {
+        $record = Pelanggaran::find($this->selected_id);
+        $this->validate([
+            'namapel' => 'required',
+            'poin' => 'required',
+        ]);
+        $record->update([
+            'nama_pelanggaran' => $this->namapel,
+            'poin' => $this->poin,
+        ]);
+
+        $this->resetInput();
+        $this->dispatchBrowserEvent('close-update');
+    }
 }

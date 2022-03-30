@@ -17,7 +17,8 @@
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Masukan Nama prestasi</label>
-                            <input type="text" class="form-control" placeholder="Prestasi" wire:model.defer="prestasi">
+                            <input type="text" class="form-control" placeholder="Prestasi"
+                                wire:model.defer="prestasi">
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Masukan Poin</label>
@@ -52,7 +53,8 @@
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Masukan Nama prestasi</label>
-                            <input type="text" class="form-control" placeholder="Prestasi" wire:model.defer="prestasi">
+                            <input type="text" class="form-control" placeholder="Prestasi"
+                                wire:model.defer="prestasi">
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Masukan Poin</label>
@@ -80,22 +82,24 @@
 
             <div>
                 @if ($checked)
-                <div class="dropdown ml-4">
-                    <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">With Checked
-                        ({{ count($checked) }})</button>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item" type="button"
-                            onclick="confirm('Are you sure you want to delete these Records?') || event.stopImmediatePropagation()"
-                            wire:click="deleteRecords()">
-                            Delete
-                        </a>
-                        <a href="#" class="dropdown-item" type="button"
-                            onclick="confirm('Are you sure you want to export these Records?') || event.stopImmediatePropagation()"
-                            wire:click="exportSelected()">
-                            Export
-                        </a>
+                    <div class="dropdown ml-4">
+                        <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">With Checked
+                            ({{ count($checked) }})</button>
+                        <div class="dropdown-menu">
+                            @role('admin')
+                            <a href="#" class="dropdown-item" type="button"
+                                onclick="confirm('Are you sure you want to delete these Records?') || event.stopImmediatePropagation()"
+                                wire:click="deleteRecords()">
+                                Delete
+                            </a>
+                            @endrole
+                            <a href="#" class="dropdown-item" type="button"
+                                onclick="confirm('Are you sure you want to export these Records?') || event.stopImmediatePropagation()"
+                                wire:click="exportSelected()">
+                                Export
+                            </a>
+                        </div>
                     </div>
-                </div>
                 @endif
             </div>
         </div>
@@ -107,7 +111,7 @@
                 Record Prestasi</button>
         </div>
     </div>
-    
+
     <div class="d-flex justify-content-center">
         <div class="col-md-3">
             <input type="search" wire:model.debounce.500ms="search" class="form-control" placeholder="Search">
@@ -132,39 +136,90 @@
         </div>
     @endif
 
-    <strong>{{ $test }}</strong>
-
-    <div class="card-body table-responsive p-0">
-        <table class="table table-hover">
-            <tbody>
-                <tr>
-                    <th><input type="checkbox" wire:model="selectPage"></th>
-                    <th>Nama Siswa</th>
-                    <th>NIS</th>
-                    <th>Kelas</th>
-                    <th>Prestasi</th>
-                    <th>Poin</th>
-                    <th>pelapor</th>
-                    <th>Action</th>
-                </tr>
-                @foreach ($students as $student)
-                    <tr class="@if ($this->isChecked($student->id)) table-primary @endif">
-                        <td><input type="checkbox" value="{{ $student->id }}" wire:model="checked"></td>
-                        <td>{{ $student->getsiswa->name }}</td>
-                        <td>{{ $student->getsiswa->nis_nim_nik }}</td>
-                        <td>{{ $student->getsiswa->kelas }}</td>
-                        <td>{{ $student->prestasi }}</td>
-                        <td>{{ $student->poin }}</td>
-                        <td>{{ $student->getpelapor->name }}</td>
-                        <td>
-                            <button wire:click.prevent="edit({{ $student->id }})" class="btn btn-primary btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                            <button class="btn btn-danger btn-sm" onclick="confirm('Are you sure you want to delete this record?') || event.stopImmediatePropagation()" wire:click="deleteSingleRecord({{ $student->id }})"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                        </td>
+    <!-- <strong>{{ $test }}</strong> -->
+    @role('admin')
+        <div class="card-body table-responsive p-0">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th><input type="checkbox" wire:model="selectPage"></th>
+                        <th>Nama Siswa</th>
+                        <th>NIS</th>
+                        <th>Kelas</th>
+                        <th>Prestasi</th>
+                        <th>Poin</th>
+                        <th>Pelapor</th>
+                        <th>Waktu</th>
+                        <th>Action</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+                    @foreach ($students as $student)
+                        <tr class="@if ($this->isChecked($student->id)) table-primary @endif">
+                            <td><input type="checkbox" value="{{ $student->id }}" wire:model="checked"></td>
+                            <td>{{ $student->getsiswa->name }}</td>
+                            <td>{{ $student->getsiswa->nis_nim_nik }}</td>
+                            <td>{{ $student->getsiswa->kelas }}</td>
+                            <td>{{ $student->prestasi }}</td>
+                            <td>{{ $student->poin }}</td>
+                            <td>{{ $student->getpelapor->name }}</td>
+                            <td>{{ $student->created_at }}</td>
+                            <td>
+                                <button wire:click.prevent="edit({{ $student->id }})" class="btn btn-primary btn-sm"><i
+                                        class="fa fa-edit" aria-hidden="true"></i></button>
+                                <button class="btn btn-danger btn-sm"
+                                    onclick="confirm('Are you sure you want to delete this record?') || event.stopImmediatePropagation()"
+                                    wire:click="deleteSingleRecord({{ $student->id }})"><i class="fa fa-trash"
+                                        aria-hidden="true"></i></button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endrole
+
+    @role('pelapor')
+        <div class="card-body table-responsive p-0">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th><input type="checkbox" wire:model="selectPage"></th>
+                        <th>Nama Siswa</th>
+                        <th>NIS</th>
+                        <th>Kelas</th>
+                        <th>Prestasi</th>
+                        <th>Poin</th>
+                        <th>Pelapor</th>
+                        <th>Waktu</th>
+                        <th>Action</th>
+                    </tr>
+                    @foreach ($students as $student)
+                        <tr class="@if ($this->isChecked($student->id)) table-primary @endif">
+                            <td><input type="checkbox" value="{{ $student->id }}" wire:model="checked"></td>
+                            <td>{{ $student->getsiswa->name }}</td>
+                            <td>{{ $student->getsiswa->nis_nim_nik }}</td>
+                            <td>{{ $student->getsiswa->kelas }}</td>
+                            <td>{{ $student->prestasi }}</td>
+                            <td>{{ $student->poin }}</td>
+                            <td>{{ $student->getpelapor->name }}</td>
+                            <td>{{ $student->created_at }}</td>
+                            @if ($student->id_pelapor == Auth::user()->id)
+                                <td>
+                                    <button wire:click.prevent="edit({{ $student->id }})"
+                                        class="btn btn-primary btn-sm"><i class="fa fa-edit"
+                                            aria-hidden="true"></i></button>
+                                    <button class="btn btn-danger btn-sm"
+                                        onclick="confirm('Are you sure you want to delete this record?') || event.stopImmediatePropagation()"
+                                        wire:click="deleteSingleRecord({{ $student->id }})"><i class="fa fa-trash"
+                                            aria-hidden="true"></i></button>
+                                </td>
+                            @endif
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endrole
+
     <div class="row mt-4">
         <div class="col-sm-6 offset-5">
             {{ $students->links() }}

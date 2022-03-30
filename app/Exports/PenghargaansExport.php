@@ -38,6 +38,8 @@ ShouldAutoSize
             $record->getsiswa->nis_nim_nik,
             $record->prestasi,
             $record->poin,
+            $record->getpelapor->name,
+            $record->created_at
         ];
     }
 

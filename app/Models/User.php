@@ -25,7 +25,8 @@ class User extends Authenticatable
         'password',
         'nis_nim_nik',
         'jabatan',
-        'poin'
+        'poin',
+        'kelas'
     ];
 
     /**

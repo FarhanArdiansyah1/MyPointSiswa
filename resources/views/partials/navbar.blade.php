@@ -10,7 +10,7 @@
             <a class="nav-link {{ ($title === "Home" ? 'active' : '') }}" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ ($title === "Tentang" ? 'active' : '') }}" href="/tentang">Tentang</a>
+            <!-- <a class="nav-link {{ ($title === "Tentang" ? 'active' : '') }}" href="/tentang">Tentang</a> -->
           </li>
           <li class="nav-item">
             <a class="nav-link {{ ($title === "Kontak" ? 'active' : '') }}" href="/kontak">Kontak</a>
@@ -42,7 +42,7 @@
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                            <a href="{{ route('register') }}" class="nav-link">Register</a>
+                            <a href="{{ url('register-siswa') }}" class="nav-link">Register</a>
                             </li>
                         @endif
                     @endauth

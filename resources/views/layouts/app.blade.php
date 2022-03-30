@@ -80,8 +80,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-2 pb-2 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{ asset('aset/test.png') }}" class="img-circle elevation-2"
-                            alt="User Image">
+                        <img src="{{ asset('aset/test.png') }}" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">{{ Auth::user()->name }}</a>
@@ -92,18 +91,27 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <li class="nav-item has-treeview">
-                            <a href="{{ url('admin/dashboard') }}"
-                                class="nav-link {{ request()->segment(2) == 'dashboard' ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Dashboard
-                                </p>
-                            </a>
-                        </li>
                         @role('pelapor')
                             <li class="nav-item has-treeview">
-                                <a href="#"
+                                <a href="{{ url('pelapor/dashboard') }}"
+                                    class="nav-link {{ request()->segment(2) == 'dashboard' ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>
+                                        Dashboard
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('pelapor/data-pelanggaran') }}"
+                                    class="nav-link {{ request()->segment(2) == 'data-pelanggaran' ? 'active' : '' }}">
+                                    <i class="fas fa-database nav-icon"></i>
+                                    <p>
+                                        Data Pelanggaran
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item has-treeview">
+                                <a href="{{ url('pelapor/penghargaan') }}"
                                     class="nav-link {{ request()->segment(2) == 'penghargaan' ? 'active' : '' }}">
                                     <i class="fas fa-check-circle nav-icon"></i>
                                     <p>
@@ -112,8 +120,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#"
-                                    class="nav-link {{ request()->segment(2) == 'pelanggaran' && request()->segment(3) == 'record' ? 'active' : '' }}{{ request()->segment(2) == 'pelanggaran' && request()->segment(3) == 'pelaporan' ? 'active' : '' }}">
+                                <a href="{{ url('pelapor/pelanggaran') }}"
+                                    class="nav-link {{ request()->segment(2) == 'pelanggaran' ? 'active' : '' }}">
                                     <i class="fas fa-times-circle nav-icon"></i>
                                     <p>
                                         Pelanggaran
@@ -149,6 +157,24 @@
                             </li> --}}
                         @endrole
                         @role('admin')
+                            <li class="nav-item has-treeview">
+                                <a href="{{ url('admin/dashboard') }}"
+                                    class="nav-link {{ request()->segment(2) == 'dashboard' ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>
+                                        Dashboard
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('admin/data-pelanggaran') }}"
+                                    class="nav-link {{ request()->segment(2) == 'data-pelanggaran' ? 'active' : '' }}">
+                                    <i class="fas fa-database nav-icon"></i>
+                                    <p>
+                                        Data Pelanggaran
+                                    </p>
+                                </a>
+                            </li>
                             <li class="nav-item has-treeview">
                                 <a href="{{ url('admin/penghargaan') }}"
                                     class="nav-link {{ request()->segment(2) == 'penghargaan' ? 'active' : '' }}">
@@ -214,17 +240,19 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-                <div class="container-fluid">
-                        <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">
-                                @if (empty(ucfirst(request()->segment(2))) && empty(ucfirst(request()->segment(3))))
-                                    {{ ucfirst(request()->segment(1)) }}s
-                                @elseif (empty(ucfirst(request()->segment(3))))
-                                    {{ ucfirst(request()->segment(2)) }}
-                                @endif
-                            </h1>
-                        </div><!-- /.col -->
-                </div><!-- /.container-fluid -->
+            <div class="container-fluid">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">
+                        @if (request()->segment(1) === 'data-pelanggaran')
+                            Data Pelanggaran
+                        @elseif (empty(ucfirst(request()->segment(2))) && empty(ucfirst(request()->segment(3))))
+                            {{ ucfirst(request()->segment(1)) }}
+                        @elseif (empty(ucfirst(request()->segment(3))))
+                            {{ ucfirst(request()->segment(2)) }}
+                        @endif
+                    </h1>
+                </div><!-- /.col -->
+            </div><!-- /.container-fluid -->
             <!-- /.content-header -->
 
             <!-- Main content -->
@@ -274,7 +302,9 @@
     <script src={{ asset('dist/js/demo.js') }}></script>
     @livewireScripts
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+    </script>
     <script>
         window.addEventListener('show-create', event => {
             $('#exampleModal').modal('show');
@@ -285,11 +315,12 @@
 
         window.addEventListener('show-update', event => {
             $('#exampleModals').modal('show');
-            
+
         })
         window.addEventListener('close-update', event => {
             $('#exampleModals').modal('hide');
         })
     </script>
 </body>
+
 </html>

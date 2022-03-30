@@ -14,6 +14,7 @@ class Record extends Model
     protected $fillable = [
         'id', 'id_siswa', 'id_pelanggaran', 'poin', 'id_pelapor', 'keterangan', 'prestasi'
     ];
+    // public $timestamps = false;
     public function getsiswa(){
         return $this->belongsTo(User::class, 'id_siswa', 'id');
     }
